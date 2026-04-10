@@ -1,0 +1,55 @@
+MULAI
+
+Ambil semua elemen HTML yang dibutuhkan
+
+Set score = 0
+Set gameOver = false
+Set playerPosition = tengah
+Set fallingObjects = array kosong
+
+Ambil leaderboard dari localStorage
+Tampilkan leaderboard
+
+Saat tombol Start diklik:
+    Ambil nickname
+    Jika nickname kosong:
+        isi default "Player"
+    Reset score
+    Reset gameOver
+    Reset posisi player
+    Hapus semua objek jatuh
+    Mulai game loop
+    Mulai object spawner
+
+Saat tombol keyboard ditekan:
+    Jika tombol kiri:
+        geser player ke kiri
+    Jika tombol kanan:
+        geser player ke kanan
+
+Fungsi buatObjekJatuh:
+    Buat elemen objek baru
+    Tentukan posisi horizontal acak
+    Tambahkan ke area game
+    Simpan ke array fallingObjects
+
+Fungsi updateGame:
+    Jika gameOver = true:
+        hentikan loop
+    Untuk setiap objek di fallingObjects:
+        turunkan posisi objek
+        Jika objek keluar area:
+            hapus objek
+        Jika objek menyentuh player:
+            gameOver = true
+            tampilkan game over
+            simpan skor
+            tampilkan leaderboard
+    Tambah score
+    Update tampilan score
+
+Saat game over:
+    Hentikan interval
+    Simpan nickname dan score ke localStorage
+
+SELESAI

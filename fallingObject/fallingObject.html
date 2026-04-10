@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avoid the Falling Objects</title>
+    <link rel="stylesheet" href="fallingObject.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <h1>Avoid the Falling Objects</h1>
+        <p class="subtitle">
+          Hindari benda yang jatuh selama mungkin untuk mendapatkan skor
+          tertinggi.
+        </p>
+      </header>
+
+      <main class="container">
+        <section class="panel left-panel">
+          <div class="card">
+            <h2>Instruksi Game</h2>
+            <ul>
+              <li>Masukkan nickname sebelum bermain.</li>
+              <li>
+                Gunakan tombol <strong>←</strong> dan <strong>→</strong> untuk
+                bergerak.
+              </li>
+              <li>Hindari semua benda yang jatuh dari atas.</li>
+              <li>
+                Bila kepala Anda terkena salah satu benda yang jatuh selain 💎,
+                maka Anda langsung game over.
+              </li>
+              <li>
+                Setiap benda yang berhasil Anda hindari akan menambah skor.
+              </li>
+              <li>
+                Jika terkena 💎, Anda mendapat bonus 50 poin dan tidak game
+                over.
+              </li>
+              <li>Tekan Start Game untuk mulai.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2>Mulai Bermain</h2>
+            <label for="nickname">Player</label>
+            <input
+              type="text"
+              id="nickname"
+              placeholder="Masukkan nickname Anda"
+              maxlength="15"
+            />
+            <button id="startBtn">Start Game</button>
+            <button id="restartBtn">Restart</button>
+            <a href="index.html" class="back-btn">Back to Home</a>
+          </div>
+        </section>
+
+        <section class="game-section">
+          <div id="gameArea">
+            <div class="game-hud">
+              <p class="game-hud-player">
+                Player: <span id="hudPlayerName">-</span>
+              </p>
+              <p class="game-hud-level">Level: <span id="hudLevel">1</span></p>
+              <p class="game-hud-score">
+                Score: <span class="score-value">0</span>
+              </p>
+              <p class="game-hud-time">
+                Duration: <span id="hudDuration">0:00</span>
+              </p>
+            </div>
+            <div id="levelUpBanner" class="level-up-banner hidden">
+              Level up &gt;&gt;
+            </div>
+            <div id="player">😎</div>
+            <div id="gameOverOverlay" class="overlay hidden">
+              <h2 id="overlayTitle">Game Over</h2>
+              <p id="finalScoreText">Your Score: 0</p>
+              <p id="finalDurationText">Your Duration: 0:00</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel right-panel">
+          <div class="card">
+            <h2>Leaderboard</h2>
+            <div class="leaderboard-head">
+              <span class="leaderboard-head-name">Player</span>
+              <span class="leaderboard-head-score">Score</span>
+              <span class="leaderboard-head-duration">Duration</span>
+            </div>
+            <ol id="leaderboardList">
+              <li>No scores yet.</li>
+            </ol>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="fallingObject.js"></script>
+  </body>
+</html>

@@ -1,0 +1,508 @@
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700&family=Poppins:wght@400;500;600;700;800&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --viewport-cap: 800px;
+  --page-max-width: 1280px;
+  --page-padding: clamp(12px, 1.8vh, 20px);
+  --section-gap: clamp(12px, 1.8vh, 18px);
+  --card-radius: clamp(12px, 1.6vh, 16px);
+  --card-padding: clamp(12px, 1.8vh, 16px);
+  --control-padding-y: clamp(9px, 1.3vh, 11px);
+  --control-padding-x: clamp(10px, 1.6vh, 12px);
+  --title-size: clamp(1.6rem, 3.2vh, 1.9rem);
+  --subtitle-size: clamp(0.9rem, 1.8vh, 1rem);
+  --body-size: clamp(0.82rem, 1.7vh, 0.96rem);
+  --small-size: clamp(0.76rem, 1.55vh, 0.88rem);
+  --panel-width: clamp(250px, 21vw, 290px);
+  --game-height: clamp(360px, 59vh, 520px);
+  --hud-top: clamp(10px, 1.6vh, 14px);
+}
+
+body {
+  font-family: "Poppins", "Inter", "Trebuchet MS", sans-serif;
+  background:
+    linear-gradient(rgba(15, 23, 42, 0.74), rgba(17, 24, 39, 0.82)),
+    url("falling.png") center / cover no-repeat fixed;
+  color: #ffffff;
+  min-height: 100vh;
+  max-height: var(--viewport-cap);
+  overflow: auto;
+  font-size: var(--body-size);
+}
+
+.page {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  min-height: min(100vh, var(--viewport-cap));
+  max-height: var(--viewport-cap);
+  padding: var(--page-padding);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: clamp(14px, 2.2vh, 20px);
+}
+
+.header h1 {
+  font-family: "Bangers", "Press Start 2P", cursive;
+  font-size: var(--title-size);
+  margin-bottom: clamp(4px, 0.8vh, 8px);
+  letter-spacing: 0.06em;
+}
+
+.subtitle {
+  color: #cbd5e1;
+  font-size: var(--subtitle-size);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: var(--panel-width) minmax(0, 1fr) var(--panel-width);
+  gap: var(--section-gap);
+  align-items: stretch;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  backdrop-filter: blur(8px);
+}
+
+.card h2 {
+  font-family: "Poppins", "Inter", sans-serif;
+  margin-bottom: clamp(8px, 1.2vh, 10px);
+  font-size: clamp(0.98rem, 2vh, 1.05rem);
+  letter-spacing: 0.03em;
+}
+
+.card ul {
+  font-family: "Nunito", "Inter", sans-serif;
+  padding-left: 16px;
+  line-height: 1.55;
+  font-size: var(--small-size);
+}
+
+.card label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: var(--small-size);
+}
+
+.card input {
+  width: 100%;
+  padding: var(--control-padding-y) var(--control-padding-x);
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  margin-bottom: 10px;
+  font-size: var(--small-size);
+}
+
+.card button,
+.back-btn {
+  font-family: "Poppins", "Inter", sans-serif;
+  width: 100%;
+  padding: var(--control-padding-y) var(--control-padding-x);
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-size: var(--small-size);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.card button {
+  background: #22c55e;
+  color: white;
+}
+
+.card button:hover {
+  background: #16a34a;
+}
+
+.card button:disabled {
+  background: #64748b;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.card button:disabled:hover {
+  background: #64748b;
+}
+
+#restartBtn {
+  background: #3b82f6;
+}
+
+#restartBtn:hover {
+  background: #2563eb;
+}
+
+.back-btn {
+  background: #f59e0b;
+  color: white;
+}
+
+.back-btn:hover {
+  background: #d97706;
+}
+
+.game-section {
+  display: flex;
+  justify-content: center;
+  align-self: stretch;
+}
+
+#gameArea {
+  width: 100%;
+  max-width: 700px;
+  height: 100%;
+  min-height: var(--game-height);
+  background: linear-gradient(180deg, #1e293b, #0f172a);
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  border-radius: clamp(16px, 2.2vh, 20px);
+  position: relative;
+  overflow: hidden;
+}
+
+.game-hud {
+  position: absolute;
+  top: var(--hud-top);
+  left: var(--hud-top);
+  right: var(--hud-top);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: clamp(9px, 1.4vh, 12px) clamp(12px, 1.8vh, 16px);
+  border-radius: clamp(12px, 1.8vh, 14px);
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  z-index: 5;
+}
+
+.game-hud-player,
+.game-hud-level,
+.game-hud-score,
+.game-hud-time {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-size: var(--small-size);
+  font-weight: 700;
+}
+
+.game-hud-level span,
+.game-hud-score .score-value,
+.game-hud-time span {
+  color: #facc15;
+  font-variant-numeric: tabular-nums;
+}
+
+.level-up-banner {
+  font-family: "Poppins", "Inter", sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.92);
+  padding: clamp(10px, 1.6vh, 14px) clamp(18px, 2.6vh, 24px);
+  border-radius: 999px;
+  background: rgba(250, 204, 21, 0.18);
+  border: 1px solid rgba(250, 204, 21, 0.45);
+  color: #fde68a;
+  font-size: clamp(1.5rem, 3.6vh, 2rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 6;
+  text-align: center;
+  text-shadow: 0 0 18px rgba(15, 23, 42, 0.45);
+}
+
+.level-up-banner.show {
+  animation: level-up-pop 1.4s ease-out forwards;
+}
+
+.level-up-banner.champion-banner {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: rgba(134, 239, 172, 0.7);
+  color: #dcfce7;
+  box-shadow: 0 0 24px rgba(134, 239, 172, 0.28);
+}
+
+#finalDurationText {
+  color: #cbd5e1;
+  font-variant-numeric: tabular-nums;
+}
+
+#player {
+  width: clamp(48px, 7.5vh, 60px);
+  height: clamp(48px, 7.5vh, 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(2rem, 4.2vh, 2.4rem);
+  line-height: 1;
+  position: absolute;
+  bottom: clamp(12px, 2vh, 16px);
+  left: 320px;
+  user-select: none;
+  filter: drop-shadow(0 8px 14px rgba(14, 165, 233, 0.35));
+}
+
+#player.player-hit {
+  animation: player-hit-shake 0.25s ease-in-out 2;
+}
+
+#player.player-bonus {
+  animation: player-bonus-pop 0.45s ease-out;
+}
+
+.falling-object {
+  width: clamp(34px, 5vh, 40px);
+  height: clamp(34px, 5vh, 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.5rem, 3.4vh, 1.9rem);
+  line-height: 1;
+  position: absolute;
+  top: 0;
+  user-select: none;
+  filter: drop-shadow(0 6px 10px rgba(15, 23, 42, 0.35));
+}
+
+.score-popup {
+  position: absolute;
+  color: #facc15;
+  font-size: clamp(1.2rem, 2.8vh, 1.5rem);
+  font-weight: 700;
+  text-shadow: 0 0 12px rgba(250, 204, 21, 0.65);
+  pointer-events: none;
+  z-index: 6;
+  animation: score-pop 0.7s ease-out forwards;
+}
+
+@keyframes score-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.8);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-36px) scale(1.1);
+  }
+}
+
+@keyframes player-hit-shake {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+
+  20% {
+    transform: translateX(-6px) rotate(-10deg);
+  }
+
+  40% {
+    transform: translateX(6px) rotate(10deg);
+  }
+
+  60% {
+    transform: translateX(-4px) rotate(-8deg);
+  }
+
+  80% {
+    transform: translateX(4px) rotate(8deg);
+  }
+
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+@keyframes player-bonus-pop {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 8px 14px rgba(14, 165, 233, 0.35));
+  }
+
+  35% {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 18px rgba(250, 204, 21, 0.8));
+  }
+
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 8px 14px rgba(14, 165, 233, 0.35));
+  }
+}
+
+@keyframes level-up-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.04);
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  z-index: 10;
+  padding: 20px;
+}
+
+.overlay h2 {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-size: clamp(1.5rem, 3.6vh, 2rem);
+}
+
+.overlay p {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-size: var(--small-size);
+}
+
+.hidden {
+  display: none;
+}
+
+#leaderboardList {
+  padding-left: 20px;
+  line-height: 1.6;
+  font-size: var(--small-size);
+}
+
+.leaderboard-head {
+  font-family: "Poppins", "Inter", sans-serif;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 52px 58px;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding: 0 0 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  font-size: clamp(0.7rem, 1.4vh, 0.82rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.leaderboard-head-score,
+.leaderboard-head-duration {
+  text-align: right;
+}
+
+.leaderboard-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 52px 58px;
+  gap: 12px;
+  align-items: center;
+}
+
+.leaderboard-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.leaderboard-score {
+  color: #facc15;
+  min-width: 52px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.leaderboard-duration {
+  color: #cbd5e1;
+  min-width: 58px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#message {
+  color: #fde68a;
+  margin-top: 6px;
+}
+
+@media (max-width: 1100px) {
+  :root {
+    --game-height: min(52vh, 500px);
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .game-section {
+    order: -1;
+  }
+
+  #gameArea {
+    height: 500px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --page-padding: 12px;
+    --section-gap: 12px;
+    --game-height: min(48vh, 420px);
+  }
+
+  .game-hud {
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+  }
+
+  .card ul {
+    line-height: 1.45;
+  }
+}

@@ -1,0 +1,48 @@
+MULAI
+
+Siapkan simbol kartu berpasangan
+Acak posisi kartu
+Tampilkan semua kartu dalam keadaan tertutup
+Tampilkan leaderboard
+
+Saat tombol Start Game diklik:
+    Ambil nickname
+    Jika nickname kosong:
+        nickname = "Player"
+
+    Reset moves = 0
+    Reset matches = 0
+    Reset timer = 0
+    Acak kartu lagi
+    Mulai timer
+    Game aktif
+
+Saat kartu diklik:
+    Jika game belum aktif, abaikan
+    Jika kartu sudah matched, abaikan
+    Jika kartu sedang terbuka, abaikan
+
+    Buka kartu
+
+    Jika belum ada kartu pertama:
+        simpan sebagai kartu pertama
+    Jika sudah ada kartu pertama:
+        simpan sebagai kartu kedua
+        tambah moves
+        bandingkan kedua kartu
+
+        Jika simbol sama:
+            tandai matched
+            tambah matches
+            kosongkan pilihan pertama dan kedua
+        Jika simbol berbeda:
+            tunggu sebentar
+            tutup kembali kedua kartu
+            kosongkan pilihan pertama dan kedua
+
+    Jika matches sama dengan jumlah pasangan:
+        hentikan timer
+        simpan skor ke localStorage
+        tampilkan pesan menang
+
+SELESAI

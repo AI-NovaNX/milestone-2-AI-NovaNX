@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Card Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="memoryCard.css" />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <header class="hero">
+        <h1>Memory Card Game</h1>
+        <p>
+          Cocokkan semua pasangan kartu secepat mungkin dan dapatkan skor
+          terbaik.
+        </p>
+      </header>
+
+      <main class="game-layout">
+        <aside class="info-panel">
+          <section class="panel-card instruction-panel">
+            <h2>Instruksi Game</h2>
+            <ul>
+              <li>Masukkan nickname sebelum mulai bermain.</li>
+              <li>Klik dua kartu setiap giliran untuk membukanya.</li>
+              <li>Jika dua kartu sama, kartu akan tetap terbuka.</li>
+              <li>Jika berbeda, kartu akan tertutup kembali.</li>
+              <li>
+                Selesaikan semua pasangan dengan jumlah langkah sesedikit
+                mungkin.
+              </li>
+            </ul>
+          </section>
+
+          <section class="panel-card play-panel">
+            <h2>Mulai Bermain</h2>
+            <div class="play-controls-row">
+              <label for="nickname" class="sr-only">Nickname</label>
+              <input
+                type="text"
+                id="nickname"
+                maxlength="16"
+                placeholder="Masukkan nickname"
+              />
+              <button id="startBtn">Start Game</button>
+              <button id="restartBtn">Restart</button>
+              <a href="index.html" class="back-home-btn">Back to Home</a>
+            </div>
+          </section>
+
+          <section class="panel-card stats-panel">
+            <h2>Status</h2>
+            <p><span>Player</span><strong id="playerName">-</strong></p>
+            <p><span>Moves</span><strong id="moves">0</strong></p>
+            <p><span>Matches</span><strong id="matches">0 / 8</strong></p>
+            <p><span>Time</span><strong id="timer">00:00</strong></p>
+            <p class="status-message" id="statusMessage">
+              Tekan Start Game untuk memulai.
+            </p>
+          </section>
+        </aside>
+
+        <section class="board-section">
+          <div class="memory-board" id="memoryBoard"></div>
+
+          <div class="overlay hidden" id="resultOverlay">
+            <div class="overlay-card">
+              <h2>Selamat!</h2>
+              <p id="finalMessage">Anda berhasil menyelesaikan game.</p>
+              <button id="playAgainBtn">Main Lagi</button>
+            </div>
+          </div>
+        </section>
+
+        <aside class="leaderboard-panel">
+          <section class="panel-card">
+            <h2>Leaderboard</h2>
+            <div class="leaderboard-head">
+              <span class="leaderboard-head-player">Player</span>
+              <span class="leaderboard-head-moves">Moves</span>
+              <span class="leaderboard-head-duration">Duration</span>
+            </div>
+            <ol id="leaderboardList" class="leaderboard-list">
+              <li>Belum ada skor tersimpan.</li>
+            </ol>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <script src="memoryCard.js"></script>
+  </body>
+</html>
