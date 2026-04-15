@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Battleship</title>
+    <link rel="stylesheet" href="battleship.css" />
+  </head>
+  <body>
+    <div class="battleship-app">
+      <header class="hero">
+        <h1>⚓ Modern Battleship</h1>
+        <p>
+          Place your ships, choose difficulty, and sink the enemy fleet before
+          they sink yours.
+        </p>
+      </header>
+
+      <section class="top-controls glass">
+        <div class="control-group">
+          <label for="battleshipNickname">Nickname</label>
+          <input
+            type="text"
+            id="battleshipNickname"
+            maxlength="15"
+            placeholder="Enter nickname"
+          />
+          <button id="battleshipSaveNameBtn">Save Name</button>
+        </div>
+
+        <div class="control-group">
+          <label for="battleshipDifficulty">Difficulty</label>
+          <select id="battleshipDifficulty">
+            <option value="easy" selected>Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+
+        <div class="control-group buttons-line">
+          <button id="battleshipStartBtn" disabled>Start Battle</button>
+          <button id="battleshipRestartBtn">Restart Game</button>
+          <a href="../index.html" class="battleship-home-link">Back to Home</a>
+        </div>
+      </section>
+
+      <section class="game-instructions glass">
+        <h2>Game Instructions</h2>
+        <ul>
+          <li>First, place all your ships on your board.</li>
+          <li>Hover over your board to preview ship placement.</li>
+          <li>Green preview means valid. Red preview means invalid.</li>
+          <li>Click enemy board to fire once the battle starts.</li>
+          <li>💥 means hit, 🌊 means miss.</li>
+          <li>Hard mode gives the computer a much smarter attack pattern.</li>
+        </ul>
+      </section>
+
+      <section class="status-bar glass">
+        <div id="battleshipPlayerLabel">Player: Guest</div>
+        <div id="battleshipPhaseLabel">Phase: Ship Placement</div>
+        <div id="battleshipScoreLabel">Score: 0</div>
+        <div id="battleshipMessageLabel">
+          Place your ships on the left board.
+        </div>
+      </section>
+
+      <section class="ships-panel glass">
+        <h2>Your Fleet</h2>
+        <div id="battleshipShipsQueue" class="ship-queue"></div>
+        <button id="battleshipRotateBtn">Rotate: Horizontal</button>
+      </section>
+
+      <section class="boards-area">
+        <div class="board-card glass">
+          <h2>Your Board</h2>
+          <div id="battleshipPlayerBoardWrapper"></div>
+        </div>
+
+        <div class="board-card glass">
+          <h2>Enemy Board</h2>
+          <div id="battleshipEnemyBoardWrapper"></div>
+        </div>
+      </section>
+
+      <section class="legend-leaderboard">
+        <div class="legend glass">
+          <h2>Legend</h2>
+          <div class="legend-items">
+            <span>💥 Hit</span>
+            <span>🌊 Miss</span>
+            <span class="preview-ok-badge">Valid Preview</span>
+            <span class="preview-bad-badge">Invalid Preview</span>
+          </div>
+        </div>
+
+        <div class="leaderboard glass">
+          <h2>Leaderboard</h2>
+          <ol id="battleshipLeaderboardList"></ol>
+        </div>
+      </section>
+    </div>
+
+    <div id="battleshipModal" class="modal hidden">
+      <div class="modal-content">
+        <h2 id="battleshipModalTitle">Game Over</h2>
+        <p id="battleshipModalText"></p>
+        <div class="modal-actions">
+          <button id="battleshipPlayAgainBtn">Play Again</button>
+          <button id="battleshipCloseModalBtn">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="battleship.js"></script>
+  </body>
+</html>
