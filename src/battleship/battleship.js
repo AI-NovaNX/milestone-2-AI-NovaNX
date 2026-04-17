@@ -1088,7 +1088,21 @@ function battleshipBindEvents() {
   battleshipEls.playAgainBtn.addEventListener("click", battleshipResetState);
   battleshipEls.closeModalBtn.addEventListener("click", battleshipHideModal);
   battleshipEls.difficultySelect.addEventListener("change", () => {
-    battleshipReadDifficulty();
+    const previousDifficulty = battleshipState.difficulty;
+    const nextDifficulty = battleshipEls.difficultySelect.value;
+
+    const shipsAlreadyPlaced = battleshipState.playerShips.some(
+      (ship) => ship.placed,
+    );
+
+    if (battleshipState.phase !== "placement" || shipsAlreadyPlaced) {
+      battleshipEls.difficultySelect.value = previousDifficulty;
+      battleshipSetMessage("Restart the game to change difficulty.");
+      return;
+    }
+
+    battleshipEls.difficultySelect.value = nextDifficulty;
+    battleshipResetState();
     battleshipSetMessage(`Difficulty set to ${battleshipState.difficulty}.`);
   });
 }
