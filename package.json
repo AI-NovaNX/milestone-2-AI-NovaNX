@@ -1,0 +1,27 @@
+{
+  "name": "milestone-2-ai-novanx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./src/style.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./src/style.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Revou-FSSE-Feb26/milestone-2-AI-NovaNX.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Revou-FSSE-Feb26/milestone-2-AI-NovaNX/issues"
+  },
+  "homepage": "https://github.com/Revou-FSSE-Feb26/milestone-2-AI-NovaNX#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "tailwindcss": "^4.2.2"
+  }
+}

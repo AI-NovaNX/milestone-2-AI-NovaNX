@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>REVOFUN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Rajdhani:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body class="selection:bg-cyan-300 selection:text-slate-950">
+    <div class="min-h-screen px-0 py-3 sm:px-0">
+      <header class="header-shell">
+        <div class="header-noise"></div>
+
+        <div
+          class="relative z-10 flex min-h-19 flex-col gap-4 px-4 py-3 sm:min-h-20.5 sm:flex-row sm:items-center sm:justify-between sm:px-7 lg:min-h-0 lg:px-8 lg:py-0"
+        >
+          <a href="indeks.html" aria-label="REVOFUN Home" class="header-brand">
+            <img
+              src="src/assets/REVOFUN-logo.png"
+              alt="REVOFUN"
+              class="header-logo select-none"
+            />
+          </a>
+
+          <nav
+            class="flex flex-wrap items-center gap-x-3.5 gap-y-2 self-end font-[Orbitron] text-[0.76rem] font-bold sm:self-auto sm:text-[0.92rem] lg:gap-x-4 lg:text-[1.02rem]"
+          >
+            <a href="indeks.html" class="nav-link nav-link-active">Home</a>
+            <span
+              class="nav-divider hidden sm:inline-block"
+              aria-hidden="true"
+            ></span>
+            <a href="#games" class="nav-link">Games</a>
+            <span
+              class="nav-divider hidden sm:inline-block"
+              aria-hidden="true"
+            ></span>
+            <a href="#about" class="nav-link">About</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <section
+          class="relative left-1/2 mt-0 grid w-screen aspect-1437/676 -translate-x-1/2 place-items-center overflow-hidden bg-[#22094c] bg-[url('./assets/heroBackground.png')] bg-contain bg-top bg-no-repeat shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_18px_36px_rgba(13,4,34,0.42)]"
+          aria-labelledby="hero-title"
+          aria-describedby="hero-subtitle"
+        >
+          <div
+            class="absolute inset-0 bg-[linear-gradient(180deg,rgba(44,9,90,0.14),rgba(24,7,62,0.08)),radial-gradient(circle_at_center,rgba(120,46,255,0.08),rgba(18,5,47,0.14)_72%)]"
+          ></div>
+          <div
+            class="pointer-events-none absolute top-1/2 left-[18%] h-60 w-60 -translate-y-[58%] rounded-full bg-[radial-gradient(circle,rgba(255,141,86,0.22),rgba(255,141,86,0))] opacity-70 blur-xl"
+          ></div>
+          <div
+            class="pointer-events-none absolute top-1/2 right-[18%] h-60 w-60 -translate-y-[42%] rounded-full bg-[radial-gradient(circle,rgba(252,206,86,0.18),rgba(252,206,86,0))] opacity-70 blur-xl"
+          ></div>
+
+          <div
+            class="relative z-1 flex max-w-170 flex-col items-center text-center max-sm:px-5.5 lg:-translate-y-25"
+          >
+            <p
+              class="mb-2 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(37,11,78,0.26)] px-4 py-1 font-[Orbitron] text-[0.84rem] font-bold tracking-[0.2em] text-[rgba(250,240,255,0.96)] [text-shadow:0_1px_0_rgba(53,17,97,0.95),0_0_12px_rgba(201,132,255,0.34)] shadow-[0_6px_18px_rgba(16,4,35,0.14)] backdrop-blur-[2px] max-sm:text-[0.72rem] max-sm:tracking-[0.16em]"
+            >
+              REVOFUN ARCADE
+            </p>
+            <h1
+              id="hero-title"
+              class="m-0 font-[Orbitron] text-[clamp(2rem,5vw,4.35rem)] font-extrabold leading-[0.94] tracking-[0.02em] uppercase text-[#ffe78c] [text-shadow:0_3px_0_rgba(103,22,154,0.95),0_0_18px_rgba(255,186,92,0.44),0_0_40px_rgba(233,125,255,0.28)]"
+            >
+              Play Fun<br />Games Online!
+            </h1>
+            <p
+              id="hero-subtitle"
+              class="mt-3.5 rounded-full border border-[rgba(255,255,255,0.14)] bg-[rgba(22,8,52,0.34)] px-5 py-1.5 font-[Rajdhani] text-[clamp(0.98rem,1.6vw,1.28rem)] font-bold tracking-[0.06em] uppercase text-[rgba(255,250,231,0.98)] [text-shadow:0_1px_0_rgba(46,18,78,0.95),0_0_14px_rgba(126,214,255,0.24)] shadow-[0_8px_24px_rgba(15,4,33,0.16)] backdrop-blur-[3px] max-sm:mt-2.5 max-sm:px-4 max-sm:py-1.25 lg:mt-4"
+            >
+              Enjoy free games right in your browser!
+            </p>
+            <a
+              href="#games"
+              class="mt-5.5 inline-flex min-w-45.5 items-center justify-center rounded-2xl border-2 border-[rgba(255,129,239,0.7)] bg-[linear-gradient(180deg,rgba(255,91,246,0.98),rgba(158,17,189,0.96))] px-7 pt-3.25 pb-2.75 font-[Orbitron] text-[clamp(1.02rem,1.6vw,1.5rem)] font-extrabold tracking-[0.05em] uppercase text-[#fff8ff] no-underline [text-shadow:0_2px_0_rgba(108,14,117,0.75)] shadow-[inset_0_0_0_2px_rgba(255,213,255,0.16),0_10px_22px_rgba(95,12,121,0.42),0_0_18px_rgba(255,95,248,0.55)] transition-[filter] duration-150 hover:brightness-105 max-sm:mt-4.5 max-sm:min-w-39 max-sm:rounded-[14px] max-sm:px-5.5 max-sm:pt-2.75 max-sm:pb-2.5 lg:mt-6.5"
+            >
+              Play Now
+            </a>
+          </div>
+        </section>
+
+        <section
+          id="games"
+          class="relative left-1/2 -mt-px w-screen -translate-x-1/2 overflow-hidden bg-[#190539] bg-[url('./assets/gameBackground.png')] bg-cover bg-top bg-no-repeat"
+          aria-labelledby="games-title"
+        >
+          <div
+            class="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,3,28,0.72),rgba(10,3,28,0.22),rgba(10,3,28,0.7))]"
+          ></div>
+
+          <div
+            class="relative mx-auto max-w-270 px-4 py-14 sm:px-7 sm:py-18 lg:px-8 lg:py-22"
+          >
+            <header class="text-center">
+              <p
+                class="mx-auto inline-flex rounded-full border border-[rgba(255,255,255,0.14)] bg-[rgba(22,8,52,0.32)] px-4 py-1 font-[Orbitron] text-[0.78rem] font-extrabold tracking-[0.22em] text-[rgba(250,240,255,0.96)] shadow-[0_10px_22px_rgba(6,2,18,0.22)] backdrop-blur-[2px] max-sm:text-[0.7rem]"
+              >
+                FEATURED GAMES
+              </p>
+              <h2
+                id="games-title"
+                class="mt-4 font-[Orbitron] text-[clamp(1.7rem,3.6vw,2.75rem)] font-extrabold uppercase tracking-[0.06em] text-[#ffe78c] [text-shadow:0_3px_0_rgba(103,22,154,0.85),0_0_18px_rgba(255,186,92,0.3)]"
+              >
+                Choose Your Challenge
+              </h2>
+            </header>
+
+            <div
+              class="mt-10 grid gap-7 sm:mt-12 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3"
+            >
+              <a
+                href="src/battleship/battleship.html"
+                class="group relative overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.14)] bg-[rgba(10,3,28,0.22)] shadow-[0_18px_36px_rgba(6,2,18,0.35)]"
+                aria-label="Play Battleship"
+              >
+                <img
+                  src="src/assets/cardBattleship.png"
+                  alt="Modern Battleship War"
+                  class="h-full w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+                <div
+                  class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_55%,rgba(0,0,0,0.65))]"
+                ></div>
+                <span
+                  class="absolute left-1/2 bottom-5 inline-flex -translate-x-1/2 items-center justify-center rounded-2xl border-2 border-[rgba(255,129,239,0.75)] bg-[linear-gradient(180deg,rgba(255,91,246,0.98),rgba(158,17,189,0.96))] px-6 pt-2.75 pb-2.25 font-[Orbitron] text-[1rem] font-extrabold tracking-[0.06em] uppercase text-[#fff8ff] [text-shadow:0_2px_0_rgba(108,14,117,0.75)] shadow-[inset_0_0_0_2px_rgba(255,213,255,0.12),0_10px_22px_rgba(95,12,121,0.42),0_0_18px_rgba(255,95,248,0.45)] transition-[filter,transform] duration-150 group-hover:brightness-105 group-hover:-translate-y-0.5"
+                >
+                  Play
+                </span>
+              </a>
+
+              <a
+                href="src/fallingObject/fallingObject.html"
+                class="group relative overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.14)] bg-[rgba(10,3,28,0.22)] shadow-[0_18px_36px_rgba(6,2,18,0.35)]"
+                aria-label="Play Falling Objects"
+              >
+                <img
+                  src="src/assets/cardFalling.png"
+                  alt="Avoid the Falling Objects"
+                  class="h-full w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+                <div
+                  class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_55%,rgba(0,0,0,0.65))]"
+                ></div>
+                <span
+                  class="absolute left-1/2 bottom-5 inline-flex -translate-x-1/2 items-center justify-center rounded-2xl border-2 border-[rgba(255,129,239,0.75)] bg-[linear-gradient(180deg,rgba(255,91,246,0.98),rgba(158,17,189,0.96))] px-6 pt-2.75 pb-2.25 font-[Orbitron] text-[1rem] font-extrabold tracking-[0.06em] uppercase text-[#fff8ff] [text-shadow:0_2px_0_rgba(108,14,117,0.75)] shadow-[inset_0_0_0_2px_rgba(255,213,255,0.12),0_10px_22px_rgba(95,12,121,0.42),0_0_18px_rgba(255,95,248,0.45)] transition-[filter,transform] duration-150 group-hover:brightness-105 group-hover:-translate-y-0.5"
+                >
+                  Play
+                </span>
+              </a>
+
+              <a
+                href="src/memoryCard/memoryCard.html"
+                class="group relative overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.14)] bg-[rgba(10,3,28,0.22)] shadow-[0_18px_36px_rgba(6,2,18,0.35)] sm:col-span-2 lg:col-span-1"
+                aria-label="Play Memory Card"
+              >
+                <img
+                  src="src/assets/cardMemory.png"
+                  alt="Memory Card Game"
+                  class="h-full w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+                <div
+                  class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_55%,rgba(0,0,0,0.65))]"
+                ></div>
+                <span
+                  class="absolute left-1/2 bottom-5 inline-flex -translate-x-1/2 items-center justify-center rounded-2xl border-2 border-[rgba(255,129,239,0.75)] bg-[linear-gradient(180deg,rgba(255,91,246,0.98),rgba(158,17,189,0.96))] px-6 pt-2.75 pb-2.25 font-[Orbitron] text-[1rem] font-extrabold tracking-[0.06em] uppercase text-[#fff8ff] [text-shadow:0_2px_0_rgba(108,14,117,0.75)] shadow-[inset_0_0_0_2px_rgba(255,213,255,0.12),0_10px_22px_rgba(95,12,121,0.42),0_0_18px_rgba(255,95,248,0.45)] transition-[filter,transform] duration-150 group-hover:brightness-105 group-hover:-translate-y-0.5"
+                >
+                  Play
+                </span>
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="indeks.js"></script>
+  </body>
+</html>
