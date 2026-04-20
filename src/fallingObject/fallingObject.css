@@ -31,8 +31,8 @@ body {
     url("falling.png") center / cover no-repeat fixed;
   color: #ffffff;
   min-height: 100vh;
-  max-height: var(--viewport-cap);
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   font-size: var(--body-size);
 }
 
@@ -40,8 +40,7 @@ body {
   width: 100%;
   max-width: var(--page-max-width);
   margin: 0 auto;
-  min-height: min(100vh, var(--viewport-cap));
-  max-height: var(--viewport-cap);
+  min-height: 100vh;
   padding: var(--page-padding);
 }
 
@@ -174,7 +173,7 @@ body {
 #gameArea {
   width: 100%;
   max-width: 700px;
-  height: 100%;
+  height: clamp(420px, 60vh, 560px);
   min-height: var(--game-height);
   background: linear-gradient(180deg, #1e293b, #0f172a);
   border: 3px solid rgba(255, 255, 255, 0.15);
@@ -471,7 +470,7 @@ body {
   margin-top: 6px;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1024px) {
   :root {
     --game-height: min(52vh, 500px);
   }
@@ -504,5 +503,27 @@ body {
 
   .card ul {
     line-height: 1.45;
+  }
+
+  #gameArea {
+    height: min(58vh, 460px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    grid-template-columns: clamp(240px, 22vw, 300px) minmax(0, 1fr) clamp(
+        240px,
+        22vw,
+        300px
+      );
+  }
+
+  .card {
+    padding: clamp(14px, 1.7vw, 18px);
+  }
+
+  #gameArea {
+    height: clamp(480px, 64vh, 620px);
   }
 }

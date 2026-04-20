@@ -30,10 +30,10 @@
 
 body {
   font-family: "Nunito", sans-serif;
-  height: min(100vh, var(--viewport-cap));
-  max-height: var(--viewport-cap);
+  min-height: 100vh;
   color: var(--text-main);
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   background:
     linear-gradient(rgba(15, 23, 42, 0.76), rgba(2, 6, 23, 0.84)),
     url("memoryCard.png") center / cover no-repeat fixed;
@@ -42,9 +42,8 @@ body {
 .page-wrapper {
   max-width: 1400px;
   margin: 0 auto;
-  min-height: min(100vh, var(--viewport-cap));
-  height: min(100vh, var(--viewport-cap));
-  max-height: var(--viewport-cap);
+  min-height: 100vh;
+  height: auto;
   padding: var(--page-padding);
   display: flex;
   flex-direction: column;
@@ -464,7 +463,7 @@ button:hover,
   color: var(--text-soft);
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
   body {
     height: auto;
     max-height: none;
@@ -484,7 +483,7 @@ button:hover,
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 640px) {
   .page-wrapper {
     padding: 16px;
   }
@@ -520,5 +519,19 @@ button:hover,
 
   .button-group {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .game-layout {
+    grid-template-columns: clamp(250px, 24vw, 310px) minmax(0, 1fr) clamp(
+        280px,
+        26vw,
+        360px
+      );
+  }
+
+  .memory-board {
+    height: clamp(460px, 64vh, 620px);
   }
 }

@@ -30,7 +30,7 @@
           </a>
 
           <nav
-            class="flex flex-wrap items-center gap-x-3.5 gap-y-2 self-end font-[Orbitron] text-[0.76rem] font-bold sm:self-auto sm:text-[0.92rem] lg:gap-x-4 lg:text-[1.02rem]"
+            class="flex flex-wrap items-center gap-x-3.5 gap-y-2 self-center font-[Orbitron] text-[0.76rem] font-bold sm:self-auto sm:text-[0.92rem] lg:gap-x-4 lg:text-[1.02rem]"
           >
             <a href="indeks.html" class="nav-link">Home</a>
             <span
@@ -71,10 +71,10 @@
 
         <!-- hero content -->
         <div
-          class="absolute inset-0 flex flex-col items-center justify-center px-4 text-center"
+          class="absolute inset-0 flex flex-col items-center justify-center px-5 text-center sm:px-10 lg:px-16"
         >
           <h1
-            class="font-[Orbitron] text-5xl font-extrabold tracking-widest text-amber-300 drop-shadow-[0_0_24px_rgba(255,200,50,0.85)] sm:text-6xl lg:text-7xl"
+            class="font-[Orbitron] text-[clamp(2.1rem,7vw,4.6rem)] font-extrabold tracking-[0.16em] text-amber-300 drop-shadow-[0_0_24px_rgba(255,200,50,0.85)]"
             style="
               text-shadow:
                 0 0 32px rgba(255, 195, 30, 0.9),
@@ -98,49 +98,54 @@
 
         <!-- content overlay -->
         <div
-          class="absolute inset-0 flex flex-col items-center justify-center px-6 text-center sm:px-12 lg:px-24"
+          class="absolute inset-0 flex flex-col items-center justify-center px-5 text-center sm:px-10 lg:px-20"
         >
-          <!-- title -->
-          <h2
-            class="font-[Orbitron] text-2xl font-extrabold tracking-wide text-amber-300 sm:text-3xl lg:text-4xl"
-            style="
-              text-shadow:
-                0 0 24px rgba(255, 195, 30, 0.9),
-                0 2px 10px rgba(0, 0, 0, 0.85);
-            "
+          <div
+            class="mx-auto flex w-full max-w-[18rem] flex-col items-center sm:max-w-2xl lg:max-w-3xl"
           >
-            WELCOME TO REVOFUN!
-          </h2>
-
-          <!-- subtitle with decorative dashes -->
-          <div class="mt-2 flex items-center gap-3 sm:mt-3">
-            <span class="h-px w-10 bg-white opacity-70 sm:w-16"></span>
-            <p
-              class="font-[Rajdhani] text-sm font-bold tracking-widest text-white sm:text-base"
+            <!-- title -->
+            <h2
+              class="font-[Orbitron] text-[clamp(1.1rem,3.2vw,2.5rem)] font-extrabold tracking-[0.08em] text-amber-300"
+              style="
+                text-shadow:
+                  0 0 24px rgba(255, 195, 30, 0.9),
+                  0 2px 10px rgba(0, 0, 0, 0.85);
+              "
             >
-              FUN GAMES FOR EVERYONE
-            </p>
-            <span class="h-px w-10 bg-white opacity-70 sm:w-16"></span>
-          </div>
+              WELCOME TO REVOFUN!
+            </h2>
 
-          <!-- body paragraphs -->
-          <p
-            class="mt-5 max-w-2xl font-[Rajdhani] text-sm leading-relaxed text-white sm:text-base lg:text-lg"
-            style="text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7)"
-          >
-            At RevoFun, we're all about bringing fun and excitement to your
-            fingertips! Our mission is to provide a diverse collection of free,
-            browser-based games that are easy to play and suitable for all ages.
-          </p>
-          <p
-            class="mt-4 max-w-2xl font-[Rajdhani] text-sm leading-relaxed text-white sm:text-base lg:text-lg"
-            style="text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7)"
-          >
-            Whether you're here for a quick gaming break or looking to dive into
-            a new challenge, RevoFun offers something for everyone. Our games
-            are designed to be played instantly in your web browser, no
-            downloads or installations needed, just pure fun!
-          </p>
+            <!-- subtitle with decorative dashes -->
+            <div class="mt-2 flex items-center gap-3 sm:mt-3">
+              <span class="h-px w-10 bg-white opacity-70 sm:w-16"></span>
+              <p
+                class="font-[Rajdhani] text-[0.74rem] font-bold tracking-[0.18em] text-white sm:text-sm lg:text-base"
+              >
+                FUN GAMES FOR EVERYONE
+              </p>
+              <span class="h-px w-10 bg-white opacity-70 sm:w-16"></span>
+            </div>
+
+            <!-- body paragraphs -->
+            <p
+              class="mt-4 max-w-2xl font-[Rajdhani] text-[0.8rem] leading-relaxed text-white sm:mt-5 sm:text-sm lg:text-lg"
+              style="text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7)"
+            >
+              At RevoFun, we're all about bringing fun and excitement to your
+              fingertips! Our mission is to provide a diverse collection of
+              free, browser-based games that are easy to play and suitable for
+              all ages.
+            </p>
+            <p
+              class="mt-3 max-w-2xl font-[Rajdhani] text-[0.8rem] leading-relaxed text-white sm:mt-4 sm:text-sm lg:text-lg"
+              style="text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7)"
+            >
+              Whether you're here for a quick gaming break or looking to dive
+              into a new challenge, RevoFun offers something for everyone. Our
+              games are designed to be played instantly in your web browser, no
+              downloads or installations needed, just pure fun!
+            </p>
+          </div>
         </div>
       </section>
 
@@ -156,46 +161,54 @@
 
         <!-- content overlay — aligned to top so text sits in upper portion -->
         <div
-          class="absolute inset-0 flex flex-col items-center px-6 pt-8 text-center sm:px-12 sm:pt-12 lg:px-24 lg:pt-16"
+          class="absolute inset-0 flex flex-col items-center px-5 pt-7 text-center sm:px-12 sm:pt-12 lg:px-20 lg:pt-16"
         >
-          <!-- stars + title -->
-          <h2
-            class="font-[Orbitron] text-2xl font-extrabold tracking-wide text-amber-300 sm:text-3xl lg:text-4xl"
-            style="
-              text-shadow:
-                0 0 24px rgba(255, 195, 30, 0.9),
-                0 2px 10px rgba(0, 0, 0, 0.85);
-            "
+          <div
+            class="mx-auto flex w-full max-w-[18rem] flex-col items-center sm:max-w-2xl lg:max-w-3xl"
           >
-            ✦ OUR MISSION ✦
-          </h2>
-
-          <!-- subtitle with decorative dashes -->
-          <div class="mt-2 flex items-center gap-3 sm:mt-3">
-            <span class="h-px w-10 bg-white opacity-70 sm:w-16"></span>
-            <p
-              class="font-[Rajdhani] text-sm font-bold tracking-widest text-white sm:text-base"
+            <!-- stars + title -->
+            <h2
+              class="font-[Orbitron] text-[clamp(1.05rem,3vw,2.35rem)] font-extrabold tracking-[0.08em] text-amber-300"
+              style="
+                text-shadow:
+                  0 0 24px rgba(255, 195, 30, 0.9),
+                  0 2px 10px rgba(0, 0, 0, 0.85);
+              "
             >
-              BRINGING JOY TO GAMERS OF ALL AGES
-            </p>
-            <span class="h-px w-10 bg-white opacity-70 sm:w-16"></span>
-          </div>
+              ✦ OUR MISSION ✦
+            </h2>
 
-          <!-- body paragraph -->
-          <p
-            class="mt-6 max-w-2xl font-[Rajdhani] text-sm leading-relaxed text-white sm:text-base lg:text-lg"
-            style="text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7)"
-          >
-            Our mission at <strong>RevoFun</strong> is to create a fun and
-            engaging platform that brings joy to gamers of all ages. We believe
-            in the power of play to bring people together, relieve stress, and
-            provide a much-needed escape from the everyday routine!
-          </p>
+            <!-- subtitle with decorative dashes -->
+            <div class="mt-2 flex items-center gap-3 sm:mt-3">
+              <span class="h-px w-10 bg-white opacity-70 sm:w-16"></span>
+              <p
+                class="font-[Rajdhani] text-[0.74rem] font-bold tracking-[0.16em] text-white sm:text-sm lg:text-base"
+              >
+                BRINGING JOY TO GAMERS OF ALL AGES
+              </p>
+              <span class="h-px w-10 bg-white opacity-70 sm:w-16"></span>
+            </div>
+
+            <!-- body paragraph -->
+            <p
+              class="mt-4 max-w-2xl font-[Rajdhani] text-[0.8rem] leading-relaxed text-white sm:mt-6 sm:text-sm lg:text-lg"
+              style="text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7)"
+            >
+              Our mission at <strong>RevoFun</strong> is to create a fun and
+              engaging platform that brings joy to gamers of all ages. We
+              believe in the power of play to bring people together, relieve
+              stress, and provide a much-needed escape from the everyday
+              routine!
+            </p>
+          </div>
         </div>
       </section>
 
       <!-- Our Community Section -->
-      <section class="relative w-full" aria-label="Our Community">
+      <section
+        class="relative w-full about-community-section"
+        aria-label="Our Community"
+      >
         <img
           src="src/assets/our-community-background.png"
           alt=""
@@ -204,78 +217,84 @@
         />
 
         <div
-          class="absolute inset-0 flex flex-col items-center px-6 pt-7 text-center sm:px-12 sm:pt-10 lg:px-24 lg:pt-12"
+          class="absolute inset-0 flex flex-col items-center px-5 pt-7 text-center sm:px-12 sm:pt-10 lg:px-20 lg:pt-12 about-community-overlay"
         >
-          <h2
-            class="font-[Orbitron] text-xl font-extrabold tracking-wide text-amber-300 sm:text-2xl lg:text-3xl"
-            style="
-              text-shadow:
-                0 0 20px rgba(255, 195, 30, 0.9),
-                0 2px 8px rgba(0, 0, 0, 0.85);
-            "
+          <div
+            class="mx-auto flex w-full max-w-[18rem] flex-col items-center sm:max-w-2xl lg:max-w-3xl about-community-content"
           >
-            ✦ OUR COMMUNITY ✦
-          </h2>
+            <h2
+              class="font-[Orbitron] text-[clamp(0.98rem,2.7vw,2rem)] font-extrabold tracking-[0.08em] text-amber-300"
+              style="
+                text-shadow:
+                  0 0 20px rgba(255, 195, 30, 0.9),
+                  0 2px 8px rgba(0, 0, 0, 0.85);
+              "
+            >
+              ✦ OUR COMMUNITY ✦
+            </h2>
 
-          <div class="mt-1 flex items-center gap-2 sm:mt-2 sm:gap-3">
-            <span class="h-px w-8 bg-white opacity-70 sm:w-12"></span>
+            <div class="mt-1 flex items-center gap-2 sm:mt-2 sm:gap-3">
+              <span class="h-px w-8 bg-white opacity-70 sm:w-12"></span>
+              <p
+                class="font-[Rajdhani] text-[0.68rem] font-bold tracking-[0.16em] text-white sm:text-xs lg:text-sm"
+              >
+                CONNECT WITH FELLOW GAMERS
+              </p>
+              <span class="h-px w-8 bg-white opacity-70 sm:w-12"></span>
+            </div>
+
             <p
-              class="font-[Rajdhani] text-[0.64rem] font-bold tracking-widest text-white sm:text-xs lg:text-sm"
+              class="mt-2 max-w-3xl font-[Rajdhani] text-[0.76rem] leading-relaxed text-white sm:mt-3 sm:text-sm lg:text-base about-community-copy"
+              style="text-shadow: 0 1px 6px rgba(0, 0, 0, 0.72)"
             >
-              CONNECT WITH FELLOW GAMERS
+              Join us and start playing today. Let's make every gaming session a
+              fun and memorable one!
             </p>
-            <span class="h-px w-8 bg-white opacity-70 sm:w-12"></span>
-          </div>
 
-          <p
-            class="mt-3 max-w-3xl font-[Rajdhani] text-[0.7rem] leading-relaxed text-white sm:text-sm lg:text-base"
-            style="text-shadow: 0 1px 6px rgba(0, 0, 0, 0.72)"
-          >
-            Join us and start playing today. Let's make every gaming session a
-            fun and memorable one!
-          </p>
-
-          <div class="mt-3 flex items-center gap-3 sm:mt-4 sm:gap-4">
-            <a
-              href="#"
-              aria-label="Dribbble"
-              class="transition-opacity hover:opacity-80"
+            <div
+              class="mt-3 flex items-center gap-3 sm:mt-4 sm:gap-4 about-community-social"
             >
-              <img
-                src="src/assets/dribble.svg"
-                alt="Dribbble"
-                class="h-8 w-8"
-              />
-            </a>
-            <a
-              href="#"
-              aria-label="Instagram"
-              class="transition-opacity hover:opacity-80"
-            >
-              <img
-                src="src/assets/instagram.svg"
-                alt="Instagram"
-                class="h-8 w-8"
-              />
-            </a>
-            <a
-              href="#"
-              aria-label="LinkedIn"
-              class="transition-opacity hover:opacity-80"
-            >
-              <img
-                src="src/assets/linkedin.svg"
-                alt="LinkedIn"
-                class="h-8 w-8"
-              />
-            </a>
+              <a
+                href="#"
+                aria-label="Dribbble"
+                class="transition-opacity hover:opacity-80"
+              >
+                <img
+                  src="src/assets/dribble.svg"
+                  alt="Dribbble"
+                  class="h-7 w-7 sm:h-8 sm:w-8"
+                />
+              </a>
+              <a
+                href="#"
+                aria-label="Instagram"
+                class="transition-opacity hover:opacity-80"
+              >
+                <img
+                  src="src/assets/instagram.svg"
+                  alt="Instagram"
+                  class="h-7 w-7 sm:h-8 sm:w-8"
+                />
+              </a>
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                class="transition-opacity hover:opacity-80"
+              >
+                <img
+                  src="src/assets/linkedin.svg"
+                  alt="LinkedIn"
+                  class="h-7 w-7 sm:h-8 sm:w-8"
+                />
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- Footer Section -->
       <footer
-        class="relative -mt-12 z-10 border-t border-white/28 bg-transparent"
+        class="relative z-10 mt-0 border-t border-white/28 bg-transparent lg:-mt-12 about-page-footer"
         aria-label="Footer"
       >
         <div

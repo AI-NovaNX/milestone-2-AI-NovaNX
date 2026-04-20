@@ -237,3 +237,33 @@ nav:hover .nav-link-active:not(:hover)::after {
     display: none;
   }
 }
+
+@media (max-width: 767.98px) {
+  .about-community-section {
+    overflow: hidden;
+    padding-bottom: 1rem;
+  }
+
+  .about-community-overlay {
+    padding-top: 0.85rem;
+  }
+
+  .about-community-content {
+    max-width: 19rem;
+    transform: translateY(-0.35rem);
+  }
+
+  .about-community-copy {
+    margin-top: 0.18rem;
+    font-size: 0.68rem;
+    line-height: 1.28;
+  }
+
+  .about-community-social {
+    margin-top: 0.25rem;
+  }
+
+  .about-page-footer {
+    margin-top: 1.2rem !important;
+  }
+}

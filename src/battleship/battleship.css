@@ -48,7 +48,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 22px;
+  padding: clamp(12px, 2vw, 22px);
 }
 
 .battleship-app {
@@ -428,6 +428,10 @@ button:disabled {
   .legend-leaderboard {
     grid-template-columns: 1fr;
   }
+
+  .board-card {
+    overflow-x: auto;
+  }
 }
 
 @media (max-width: 640px) {
@@ -449,6 +453,42 @@ button:disabled {
   .top-controls,
   .status-bar {
     grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 1.65rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  .glass {
+    border-radius: 16px;
+  }
+
+  .board-card {
+    padding: 12px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero h1 {
+    font-size: 2.65rem;
+  }
+
+  .hero p {
+    font-size: 1.05rem;
+  }
+
+  .top-controls,
+  .status-bar,
+  .game-instructions,
+  .ships-panel,
+  .board-card,
+  .legend,
+  .leaderboard {
+    padding: 20px;
   }
 }
 
