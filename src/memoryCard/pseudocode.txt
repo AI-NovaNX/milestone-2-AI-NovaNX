@@ -1,48 +1,48 @@
-MULAI
+START
 
-Siapkan simbol kartu berpasangan
-Acak posisi kartu
-Tampilkan semua kartu dalam keadaan tertutup
-Tampilkan leaderboard
+Prepare pairs of card symbols
+Shuffle the card positions
+Render all cards face down
+Render the leaderboard
 
-Saat tombol Start Game diklik:
-    Ambil nickname
-    Jika nickname kosong:
+When the Start Game button is clicked:
+    Read the nickname
+    If the nickname is empty:
         nickname = "Player"
 
     Reset moves = 0
     Reset matches = 0
     Reset timer = 0
-    Acak kartu lagi
-    Mulai timer
-    Game aktif
+    Shuffle the cards again
+    Start the timer
+    Activate the game
 
-Saat kartu diklik:
-    Jika game belum aktif, abaikan
-    Jika kartu sudah matched, abaikan
-    Jika kartu sedang terbuka, abaikan
+When a card is clicked:
+    If the game is not active, ignore it
+    If the card is already matched, ignore it
+    If the card is already face up, ignore it
 
-    Buka kartu
+    Reveal the card
 
-    Jika belum ada kartu pertama:
-        simpan sebagai kartu pertama
-    Jika sudah ada kartu pertama:
-        simpan sebagai kartu kedua
-        tambah moves
-        bandingkan kedua kartu
+    If there is no first card yet:
+        save it as the first card
+    If there is already a first card:
+        save it as the second card
+        increase moves
+        compare both cards
 
-        Jika simbol sama:
-            tandai matched
-            tambah matches
-            kosongkan pilihan pertama dan kedua
-        Jika simbol berbeda:
-            tunggu sebentar
-            tutup kembali kedua kartu
-            kosongkan pilihan pertama dan kedua
+        If the symbols match:
+            mark them as matched
+            increase matches
+            clear the first and second selection
+        If the symbols are different:
+            wait briefly
+            flip both cards back over
+            clear the first and second selection
 
-    Jika matches sama dengan jumlah pasangan:
-        hentikan timer
-        simpan skor ke localStorage
-        tampilkan pesan menang
+    If matches equal the total number of pairs:
+        stop the timer
+        save the score to localStorage
+        show the win message
 
-SELESAI
+END

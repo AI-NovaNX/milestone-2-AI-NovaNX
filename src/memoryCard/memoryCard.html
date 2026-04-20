@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="id">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,36 +17,32 @@
       <header class="hero">
         <h1>Memory Card Game</h1>
         <p>
-          Cocokkan semua pasangan kartu secepat mungkin dan dapatkan skor
-          terbaik.
+          Match all card pairs as quickly as possible and get the best score.
         </p>
       </header>
 
       <main class="game-layout">
         <aside class="info-panel">
           <section class="panel-card instruction-panel">
-            <h2>Instruksi Game</h2>
+            <h2>Game Instructions</h2>
             <ul>
-              <li>Masukkan nickname sebelum mulai bermain.</li>
-              <li>Klik dua kartu setiap giliran untuk membukanya.</li>
-              <li>Jika dua kartu sama, kartu akan tetap terbuka.</li>
-              <li>Jika berbeda, kartu akan tertutup kembali.</li>
-              <li>
-                Selesaikan semua pasangan dengan jumlah langkah sesedikit
-                mungkin.
-              </li>
+              <li>Enter your nickname before starting.</li>
+              <li>Click two cards each turn to reveal them.</li>
+              <li>If two cards match, they will stay revealed.</li>
+              <li>If they are different, they will flip back over.</li>
+              <li>Complete all pairs in as few moves as possible.</li>
             </ul>
           </section>
 
           <section class="panel-card play-panel">
-            <h2>Mulai Bermain</h2>
+            <h2>Start Playing</h2>
             <div class="play-controls-row">
               <label for="nickname" class="sr-only">Nickname</label>
               <input
                 type="text"
                 id="nickname"
                 maxlength="16"
-                placeholder="Masukkan nickname"
+                placeholder="Enter your nickname"
               />
               <button id="startBtn">Start Game</button>
               <button id="restartBtn">Restart</button>
@@ -61,7 +57,7 @@
             <p><span>Matches</span><strong id="matches">0 / 8</strong></p>
             <p><span>Time</span><strong id="timer">00:00</strong></p>
             <p class="status-message" id="statusMessage">
-              Tekan Start Game untuk memulai.
+              Press Start Game to begin.
             </p>
           </section>
         </aside>
@@ -71,9 +67,9 @@
 
           <div class="overlay hidden" id="resultOverlay">
             <div class="overlay-card">
-              <h2>Selamat!</h2>
-              <p id="finalMessage">Anda berhasil menyelesaikan game.</p>
-              <button id="playAgainBtn">Main Lagi</button>
+              <h2>Congratulations!</h2>
+              <p id="finalMessage">You completed the game.</p>
+              <button id="playAgainBtn">Play Again</button>
             </div>
           </div>
         </section>
@@ -87,7 +83,7 @@
               <span class="leaderboard-head-duration">Duration</span>
             </div>
             <ol id="leaderboardList" class="leaderboard-list">
-              <li>Belum ada skor tersimpan.</li>
+              <li>No saved scores yet.</li>
             </ol>
           </section>
         </aside>

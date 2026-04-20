@@ -1,12 +1,12 @@
-// 1. Persiapan awal
-// Ukuran board akan mengikuti difficulty:
+// 1. Initial setup
+// Board size follows the selected difficulty:
 // - Easy: 8 x 8
 // - Medium: 12 x 12
 // - Hard: 16 x 16
 const BATTLESHIP_DEFAULT_BOARD_SIZE = 8;
 
-// 1. Persiapan awal
-// Siapkan daftar kapal dengan ukuran berbeda
+// 1. Initial setup
+// Prepare the ship list with different sizes
 const BATTLESHIP_FLEET_TEMPLATE = [
   { name: "Carrier", size: 4 },
   { name: "Destroyer", size: 3 },
@@ -104,8 +104,8 @@ function battleshipGetGridSizing(boardSize) {
   return { coord: 22, cell: 28 };
 }
 
-// 1. Persiapan awal
-// Buat board pemain dan board musuh sesuai ukuran difficulty
+// 1. Initial setup
+// Create the player and enemy boards based on the difficulty size
 function battleshipCreateEmptyBoard() {
   const size = battleshipState.boardSize;
 
@@ -118,8 +118,8 @@ function battleshipCreateEmptyBoard() {
   );
 }
 
-// 1. Persiapan awal
-// Siapkan daftar kapal dengan ukuran berbeda
+// 1. Initial setup
+// Prepare the ship list with different sizes
 function battleshipCreateShips() {
   return BATTLESHIP_FLEET_TEMPLATE.map((ship, index) => ({
     id: index,
@@ -135,8 +135,8 @@ function battleshipCellKey(row, col) {
   return `${row},${col}`;
 }
 
-// 1. Persiapan awal
-// Pastikan kapal tidak keluar batas board
+// 1. Initial setup
+// Make sure ships stay within the board boundaries
 function battleshipInBounds(row, col) {
   return (
     row >= 0 &&
@@ -146,8 +146,8 @@ function battleshipInBounds(row, col) {
   );
 }
 
-// 1. Persiapan awal
-// Setiap kapal hanya boleh horizontal atau vertikal
+// 1. Initial setup
+// Each ship can only be placed horizontally or vertically
 function battleshipGetPlacementCells(row, col, size, orientation) {
   const cells = [];
 
@@ -160,8 +160,8 @@ function battleshipGetPlacementCells(row, col, size, orientation) {
   return cells;
 }
 
-// 1. Persiapan awal
-// Pastikan kapal tidak keluar batas board dan tidak bertumpuk dengan kapal lain
+// 1. Initial setup
+// Make sure ships stay in bounds and do not overlap with other ships
 function battleshipCanPlaceShip(board, row, col, size, orientation) {
   const cells = battleshipGetPlacementCells(row, col, size, orientation);
 
@@ -178,8 +178,8 @@ function battleshipCanPlaceShip(board, row, col, size, orientation) {
   return true;
 }
 
-// 1. Persiapan awal
-// Letakkan kapal ke board jika posisi valid
+// 1. Initial setup
+// Place a ship on the board if the position is valid
 function battleshipPlaceShip(board, ships, shipIndex, row, col, orientation) {
   const ship = ships[shipIndex];
   const valid = battleshipCanPlaceShip(board, row, col, ship.size, orientation);
@@ -200,8 +200,8 @@ function battleshipPlaceShip(board, ships, shipIndex, row, col, orientation) {
   return true;
 }
 
-// 1. Persiapan awal
-// Letakkan semua kapal secara acak di board musuh
+// 1. Initial setup
+// Place all enemy ships randomly on the board
 function battleshipPlaceEnemyShipsRandom() {
   battleshipState.enemyBoard = battleshipCreateEmptyBoard();
   battleshipState.enemyShips = battleshipCreateShips();
@@ -276,14 +276,14 @@ function battleshipRenderShipQueue() {
     battleshipEls.shipsQueue.appendChild(token);
   });
 
-  // Letakkan tombol rotate di sebelah kanan token kapal terakhir (Patrol (2)).
+  // Place the rotate button to the right of the last ship token (Patrol (2)).
   if (rotateBtn) {
     battleshipEls.shipsQueue.appendChild(rotateBtn);
   }
 }
 
-// 2. Menampilkan board
-// Tampilkan board pemain dan board musuh
+// 2. Render the boards
+// Render the player board and the enemy board
 function battleshipBuildBoard(board, kind) {
   const grid = document.createElement("div");
   grid.className = "board-grid";
@@ -306,8 +306,8 @@ function battleshipBuildBoard(board, kind) {
   topLeft.className = "coord-cell";
   grid.appendChild(topLeft);
 
-  // 2. Menampilkan board
-  // Tampilkan koordinat kolom
+  // 2. Render the boards
+  // Render the column coordinates
   for (let col = 0; col < size; col += 1) {
     const coord = document.createElement("div");
     coord.className = "coord-cell";
@@ -316,8 +316,8 @@ function battleshipBuildBoard(board, kind) {
   }
 
   for (let row = 0; row < size; row += 1) {
-    // 2. Menampilkan board
-    // Tampilkan koordinat baris
+    // 2. Render the boards
+    // Render the row coordinates
     const rowCoord = document.createElement("div");
     rowCoord.className = "coord-cell";
     rowCoord.textContent = row + 1;
@@ -336,16 +336,16 @@ function battleshipBuildBoard(board, kind) {
         cell.classList.add("enemy-cell");
       }
 
-      // 2. Menampilkan board
-      // Pada board pemain tampilkan kapal dengan 🚢
+      // 2. Render the boards
+      // Show ships on the player board
       if (kind === "player" && data.shipId !== null && !data.hit) {
         cell.classList.add("ship-cell");
-        cell.classList.add(`ship-color-${data.shipId}`); // warna sesuai id kapal
-        cell.textContent = ""; // kotak warna saja, tanpa icon
+        cell.classList.add(`ship-color-${data.shipId}`); // color matches the ship id
+        cell.textContent = ""; // color-only cell, no icon
       }
 
-      // 3. Memulai permainan
-      // Jika kotak berisi hasil serangan, tampilkan 💥 untuk kena dan 🌊 untuk meleset
+      // 3. Start the battle
+      // If the cell contains an attack result, show 💥 for a hit and 🌊 for a miss
       if (data.hit) {
         cell.classList.add("hit-cell", "explosion");
         cell.textContent = "💥";
@@ -382,15 +382,15 @@ function battleshipBuildBoard(board, kind) {
         if (battleshipState.phase !== "battle") {
           cell.classList.add("battle-disabled");
         } else {
-          // 3. Memulai permainan
-          // Pemain klik kotak di board musuh untuk menyerang
+          // 3. Start the battle
+          // The player clicks a cell on the enemy board to attack
           cell.addEventListener("click", () =>
             battleshipHandlePlayerAttack(row, col),
           );
         }
 
-        // 2. Menampilkan board
-        // Pada board musuh kapal disembunyikan
+        // 2. Render the boards
+        // Hide ships on the enemy board
         if (data.hit) {
           cell.textContent = "💥";
         } else if (data.miss) {
@@ -405,8 +405,8 @@ function battleshipBuildBoard(board, kind) {
   return grid;
 }
 
-// 2. Menampilkan board
-// Tampilkan board pemain dan board musuh
+// 2. Render the boards
+// Render the player board and the enemy board
 function battleshipRenderBoards() {
   battleshipEls.playerBoardWrapper.innerHTML = "";
   battleshipEls.enemyBoardWrapper.innerHTML = "";
@@ -536,8 +536,8 @@ function battleshipHandlePlacementClick(row, col) {
   battleshipRenderAll();
 }
 
-// 3. Memulai permainan
-// Permainan dimulai setelah semua kapal pemain selesai dipasang
+// 3. Start the battle
+// The battle begins after all player ships have been placed
 function battleshipStartBattle() {
   const allPlaced = battleshipState.playerShips.every((ship) => ship.placed);
 
@@ -557,23 +557,23 @@ function battleshipFindShipById(ships, shipId) {
   return ships.find((ship) => ship.id === shipId);
 }
 
-// 4. Mengecek kapal tenggelam
-// Jika semua bagian kapal sudah kena, tampilkan status tenggelam
+// 4. Check for sunk ships
+// If all parts of a ship have been hit, report it as sunk
 function battleshipIsShipSunk(ships, shipId) {
   const ship = battleshipFindShipById(ships, shipId);
   return ship ? ship.hits >= ship.size : false;
 }
 
-// 6. Akhir permainan
-// Jika semua kapal musuh tenggelam pemain menang, jika semua kapal pemain tenggelam komputer menang
+// 6. End the game
+// If all enemy ships sink, the player wins; if all player ships sink, the computer wins
 function battleshipAllShipsSunk(ships) {
   return ships.every((ship) => ship.hits >= ship.size);
 }
 
-// 3. Memulai permainan
-// Pemain atau komputer menyerang satu kotak target
-// 4. Mengecek kapal tenggelam
-// Setelah serangan kena, cek kapal yang terkena apakah sudah tenggelam
+// 3. Start the battle
+// The player or computer attacks one target cell
+// 4. Check for sunk ships
+// After a hit, check whether the affected ship has sunk
 function battleshipApplyHit(board, ships, row, col) {
   const cell = board[row][col];
 
@@ -602,10 +602,10 @@ function battleshipApplyHit(board, ships, row, col) {
   };
 }
 
-// 3. Memulai permainan
-// Pemain memasukkan nickname lalu klik kotak di board musuh untuk menyerang
-// Jika kotak musuh berisi kapal ubah jadi 💥 dan tambah skor
-// Jika kotak kosong ubah jadi 🌊
+// 3. Start the battle
+// The player enters a nickname and clicks cells on the enemy board to attack
+// If the enemy cell contains a ship, change it to 💥 and add score
+// If the cell is empty, change it to 🌊
 function battleshipHandlePlayerAttack(row, col) {
   if (battleshipState.phase !== "battle") {
     return;
@@ -628,8 +628,8 @@ function battleshipHandlePlayerAttack(row, col) {
     battleshipState.score += hitPoints;
     battleshipPlaySound("enemy-hit");
 
-    // 4. Mengecek kapal tenggelam
-    // Jika semua bagian kapal itu sudah kena tampilkan pesan kapal tenggelam
+    // 4. Check for sunk ships
+    // If all sections of that ship have been hit, show the sunk message
     if (outcome.sunk) {
       battleshipState.score += BATTLESHIP_SUNK_BONUS;
       battleshipSetMessage(`Direct hit! You sank enemy ${outcome.shipName}.`);
@@ -643,15 +643,15 @@ function battleshipHandlePlayerAttack(row, col) {
 
   battleshipRenderAll();
 
-  // 6. Akhir permainan
-  // Jika semua kapal musuh tenggelam pemain menang dan skor disimpan
+  // 6. End the game
+  // If all enemy ships have sunk, the player wins and the score is saved
   if (battleshipAllShipsSunk(battleshipState.enemyShips)) {
     battleshipFinishGame(true);
     return;
   }
 
-  // 5. Giliran komputer
-  // Setelah pemain selesai menembak komputer memilih kotak untuk menyerang board pemain
+  // 5. Computer turn
+  // After the player attacks, the computer chooses a cell on the player board to attack
   setTimeout(() => {
     battleshipComputerTurn();
   }, 650);
@@ -689,8 +689,8 @@ function battleshipAddAITargets(cells) {
   });
 }
 
-// 5. Giliran komputer
-// Komputer memilih kotak acak di board pemain
+// 5. Computer turn
+// The computer chooses a random cell on the player board
 function battleshipPickRandomUntouchedCell() {
   const candidates = [];
   const size = battleshipState.boardSize;
@@ -733,10 +733,10 @@ function battleshipChooseAIMove() {
   return battleshipPickRandomUntouchedCell();
 }
 
-// 5. Giliran komputer
-// Setelah pemain selesai menembak komputer memilih kotak acak di board pemain
-// Jika kena kapal tampilkan 💥
-// Jika meleset tampilkan 🌊
+// 5. Computer turn
+// After the player attacks, the computer chooses a random cell on the player board
+// Show 💥 on a hit
+// Show 🌊 on a miss
 function battleshipComputerTurn() {
   if (battleshipState.phase !== "battle") {
     return;
@@ -774,8 +774,8 @@ function battleshipComputerTurn() {
       battleshipAddAITargets(neighbors);
     }
 
-    // 4. Mengecek kapal tenggelam
-    // Jika semua bagian kapal pemain sudah kena tampilkan pesan kapal tenggelam
+    // 4. Check for sunk ships
+    // If all parts of the player ship have been hit, show the sunk message
     if (outcome.sunk) {
       battleshipState.aiTargets = battleshipState.aiTargets.filter((cell) => {
         const boardCell = battleshipState.playerBoard[cell.row][cell.col];
@@ -793,15 +793,15 @@ function battleshipComputerTurn() {
 
   battleshipRenderAll();
 
-  // 6. Akhir permainan
-  // Jika semua kapal pemain tenggelam komputer menang
+  // 6. End the game
+  // If all player ships sink, the computer wins
   if (battleshipAllShipsSunk(battleshipState.playerShips)) {
     battleshipFinishGame(false);
   }
 }
 
-// 6. Akhir permainan
-// Jika semua kapal musuh tenggelam pemain menang dan skor disimpan ke localStorage
+// 6. End the game
+// If all enemy ships sink, the player wins and the score is saved to localStorage
 function battleshipSaveScore() {
   const key = "battleship_portfolio_leaderboard";
   const leaderboard = JSON.parse(localStorage.getItem(key)) || [];
@@ -818,8 +818,8 @@ function battleshipSaveScore() {
   localStorage.setItem(key, JSON.stringify(leaderboard.slice(0, 10)));
 }
 
-// 7. Restart dan leaderboard
-// Leaderboard menampilkan skor tertinggi dari localStorage
+// 7. Restart and leaderboard
+// The leaderboard shows the highest scores from localStorage
 function battleshipRenderLeaderboard() {
   const key = "battleship_portfolio_leaderboard";
   const leaderboard = JSON.parse(localStorage.getItem(key)) || [];
@@ -850,9 +850,9 @@ function battleshipHideModal() {
   battleshipEls.modal.classList.add("hidden");
 }
 
-// 6. Akhir permainan
-// Jika semua kapal musuh tenggelam pemain menang
-// Jika semua kapal pemain tenggelam komputer menang
+// 6. End the game
+// If all enemy ships sink, the player wins
+// If all player ships sink, the computer wins
 function battleshipFinishGame(playerWon) {
   battleshipState.phase = "gameover";
 
@@ -895,8 +895,8 @@ function battleshipRotateOrientation() {
   }
 }
 
-// 3. Memulai permainan
-// Pemain memasukkan nickname
+// 3. Start the battle
+// The player enters a nickname
 function battleshipSavePlayerName() {
   const value = battleshipEls.nicknameInput.value.trim();
 
@@ -923,10 +923,10 @@ function battleshipReadDifficulty() {
   battleshipState.difficulty = battleshipEls.difficultySelect.value;
 }
 
-// 7. Restart dan leaderboard
-// Tombol restart mengulang seluruh permainan
-// 1. Persiapan awal
-// Siapkan ulang board pemain dan board musuh lalu tempatkan kapal musuh secara acak
+// 7. Restart and leaderboard
+// The restart button resets the entire game
+// 1. Initial setup
+// Recreate the player and enemy boards, then place enemy ships randomly
 function battleshipResetState() {
   battleshipState.phase = "placement";
   battleshipState.orientation = "horizontal";
@@ -1075,8 +1075,8 @@ function battleshipPlaySound(type) {
   }
 }
 
-// 7. Restart dan leaderboard
-// Tombol restart mengulang seluruh permainan dan leaderboard tetap membaca data localStorage
+// 7. Restart and leaderboard
+// The restart button resets the game while the leaderboard continues reading from localStorage
 function battleshipBindEvents() {
   battleshipEls.saveNameBtn.addEventListener("click", battleshipSavePlayerName);
   battleshipEls.rotateBtn.addEventListener(
@@ -1107,8 +1107,8 @@ function battleshipBindEvents() {
   });
 }
 
-// 1. Persiapan awal
-// Inisialisasi permainan saat pertama kali dijalankan
+// 1. Initial setup
+// Initialize the game on first load
 function battleshipInit() {
   battleshipLoadPlayerName();
   battleshipBindEvents();

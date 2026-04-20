@@ -1,55 +1,55 @@
-MULAI
+START
 
-Ambil semua elemen HTML yang dibutuhkan
+Get all required HTML elements
 
 Set score = 0
 Set gameOver = false
-Set playerPosition = tengah
-Set fallingObjects = array kosong
+Set playerPosition = center
+Set fallingObjects = empty array
 
-Ambil leaderboard dari localStorage
-Tampilkan leaderboard
+Load the leaderboard from localStorage
+Render the leaderboard
 
-Saat tombol Start diklik:
-    Ambil nickname
-    Jika nickname kosong:
-        isi default "Player"
+When the Start button is clicked:
+    Read the nickname
+    If the nickname is empty:
+        use the default "Player"
     Reset score
     Reset gameOver
-    Reset posisi player
-    Hapus semua objek jatuh
-    Mulai game loop
-    Mulai object spawner
+    Reset the player position
+    Remove all falling objects
+    Start the game loop
+    Start the object spawner
 
-Saat tombol keyboard ditekan:
-    Jika tombol kiri:
-        geser player ke kiri
-    Jika tombol kanan:
-        geser player ke kanan
+When a keyboard key is pressed:
+    If the left key is pressed:
+        move the player left
+    If the right key is pressed:
+        move the player right
 
-Fungsi buatObjekJatuh:
-    Buat elemen objek baru
-    Tentukan posisi horizontal acak
-    Tambahkan ke area game
-    Simpan ke array fallingObjects
+createFallingObject:
+    Create a new object element
+    Set a random horizontal position
+    Add it to the game area
+    Save it in the fallingObjects array
 
-Fungsi updateGame:
-    Jika gameOver = true:
-        hentikan loop
-    Untuk setiap objek di fallingObjects:
-        turunkan posisi objek
-        Jika objek keluar area:
-            hapus objek
-        Jika objek menyentuh player:
+updateGame:
+    If gameOver = true:
+        stop the loop
+    For each object in fallingObjects:
+        move the object downward
+        If the object leaves the area:
+            remove the object
+        If the object touches the player:
             gameOver = true
-            tampilkan game over
-            simpan skor
-            tampilkan leaderboard
-    Tambah score
-    Update tampilan score
+            show the game over state
+            save the score
+            render the leaderboard
+    Increase the score
+    Update the score display
 
-Saat game over:
-    Hentikan interval
-    Simpan nickname dan score ke localStorage
+On game over:
+    Stop the intervals
+    Save the nickname and score to localStorage
 
-SELESAI
+END

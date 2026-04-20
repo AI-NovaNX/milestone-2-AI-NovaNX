@@ -1,6 +1,6 @@
-// MULAI
+// START
 
-// Ambil semua elemen HTML yang dibutuhkan
+// Get all required HTML elements
 const gameArea = document.getElementById("gameArea");
 const player = document.getElementById("player");
 const scoreDisplays = document.querySelectorAll(".score-value");
@@ -46,8 +46,8 @@ const fallingEmojis = [
 
 // Set score = 0
 // Set gameOver = false
-// Set playerPosition = tengah
-// Set fallingObjects = array kosong
+// Set playerPosition = center
+// Set fallingObjects = empty array
 let playerX = (gameAreaWidth - playerWidth) / 2;
 let score = 0;
 let gameRunning = false;
@@ -117,7 +117,7 @@ function showDiamondBonusPlayer() {
 }
 
 function loadLeaderboard() {
-  // Ambil leaderboard dari localStorage
+  // Load the leaderboard from localStorage
   const saved = localStorage.getItem("fallingObjectsLeaderboard");
   return saved ? JSON.parse(saved) : [];
 }
@@ -135,12 +135,12 @@ function formatDuration(durationMs) {
 }
 
 function renderLeaderboard() {
-  // Tampilkan leaderboard
+  // Render the leaderboard
   const leaderboard = loadLeaderboard();
   leaderboardList.innerHTML = "";
 
   if (leaderboard.length === 0) {
-    leaderboardList.innerHTML = "<li>Belum ada skor.</li>";
+    leaderboardList.innerHTML = "<li>No scores yet.</li>";
     return;
   }
 
@@ -255,11 +255,11 @@ function resetGame() {
   levelUpBanner.classList.remove("show");
   levelUpBanner.classList.remove("champion-banner");
   levelUpBanner.classList.add("hidden");
-  finalDurationText.textContent = "Durasi Anda: 0:00";
+  finalDurationText.textContent = "Your Duration: 0:00";
   playerX = (gameArea.clientWidth - player.offsetWidth) / 2;
   updatePlayerPosition();
   updateMessage(
-    "Hindari benda jatuh. Skor bertambah setiap ada benda yang berhasil dilewati.",
+    "Avoid the falling objects. Your score increases for each object you dodge.",
   );
   gameOverOverlay.classList.add("hidden");
 
@@ -268,11 +268,11 @@ function resetGame() {
 }
 
 function createFallingObject() {
-  // Fungsi buatObjekJatuh:
-  //     Buat elemen objek baru
-  //     Tentukan posisi horizontal acak
-  //     Tambahkan ke area game
-  //     Simpan ke array fallingObjects
+  // createFallingObject:
+  //     Create a new object element
+  //     Set a random horizontal position
+  //     Add it to the game area
+  //     Save it in the fallingObjects array
   if (!gameRunning) return;
 
   const object = document.createElement("div");
@@ -322,23 +322,23 @@ function showScorePopup(x, y, points = 1) {
 }
 
 function updateObjects() {
-  // Fungsi updateGame:
-  //     Jika gameOver = true:
-  //         hentikan loop
-  //     Untuk setiap objek di fallingObjects:
-  //         turunkan posisi objek
-  //         Jika objek keluar area:
-  //             hapus objek
-  //         Jika objek menyentuh player:
+  // updateGame:
+  //     If gameOver = true:
+  //         stop the loop
+  //     For each object in fallingObjects:
+  //         move the object downward
+  //         If the object leaves the area:
+  //             remove the object
+  //         If the object touches the player:
   //             gameOver = true
-  //             tampilkan game over
-  //             simpan skor
-  //             tampilkan leaderboard
-  //     Tambah score
-  //     Update tampilan score
+  //             show the game over state
+  //             save the score
+  //             render the leaderboard
+  //     Increase the score
+  //     Update the score display
   //
-  // Catatan: di implementasi ini, kondisi "gameOver" direpresentasikan oleh `gameRunning === false`
-  // dan loop dihentikan lewat `endGame()` -> `stopGameLoops()`.
+  // Note: in this implementation, the "gameOver" state is represented by `gameRunning === false`
+  // and the loops are stopped through `endGame()` -> `stopGameLoops()`.
   for (let i = fallingObjects.length - 1; i >= 0; i--) {
     const obj = fallingObjects[i];
     // turunkan posisi objek
@@ -378,7 +378,7 @@ function updateObjects() {
       score += 1;
       updateScoreDisplay();
       updateLevelProgress();
-      updateMessage(`${playerName} berhasil menghindari ${score} benda.`);
+      updateMessage(`${playerName} has successfully dodged ${score} objects.`);
       showScorePopup(obj.x, gameArea.clientHeight - 80);
       obj.element.remove();
       fallingObjects.splice(i, 1);
@@ -387,8 +387,8 @@ function updateObjects() {
 }
 
 function saveScore() {
-  // Saat game over:
-  //     Simpan nickname dan score ke localStorage
+  // On game over:
+  //     Save the nickname and score to localStorage
   const leaderboard = loadLeaderboard();
   const durationMs = getElapsedDurationMs();
 
@@ -412,9 +412,9 @@ function saveScore() {
 }
 
 function endGame(isChampion = false) {
-  // Saat game over:
-  //     Hentikan interval
-  //     Simpan nickname dan score ke localStorage
+  // On game over:
+  //     Stop the intervals
+  //     Save the nickname and score to localStorage
   gameRunning = false;
   updateStartButtonState();
 
@@ -432,10 +432,10 @@ function endGame(isChampion = false) {
   updateDurationDisplay(finalDurationMs);
 
   overlayTitle.textContent = isChampion ? "You are the Champion" : "Game Over";
-  finalScoreText.textContent = `Score Anda: ${score}`;
-  finalDurationText.textContent = `Durasi Anda: ${formatDuration(finalDurationMs)}`;
+  finalScoreText.textContent = `Your Score: ${score}`;
+  finalDurationText.textContent = `Your Duration: ${formatDuration(finalDurationMs)}`;
   if (!isChampion) {
-    updateMessage("Game over. Klik Restart untuk bermain lagi.");
+    updateMessage("Game over. Click Restart to play again.");
   }
 
   saveScore();
@@ -446,10 +446,10 @@ function endGame(isChampion = false) {
 }
 
 function startGame() {
-  // Saat tombol Start diklik:
-  //     Ambil nickname
-  //     Jika nickname kosong:
-  //         isi default "Player"
+  // When the Start button is clicked:
+  //     Read the nickname
+  //     If the nickname is empty:
+  //         use the default "Player"
   playerName = nicknameInput.value.trim() || "Player";
   if (playerNameDisplay) {
     playerNameDisplay.textContent = playerName;
@@ -459,11 +459,11 @@ function startGame() {
   // Reset score
   // Reset gameOver
   // Reset posisi player
-  // Hapus semua objek jatuh
+  // Remove all falling objects
   resetGame();
 
-  // Mulai game loop
-  // Mulai object spawner
+  // Start the game loop
+  // Start the object spawner
   gameRunning = true;
   gameStartTime = Date.now();
   updateDurationDisplay(0);
@@ -483,11 +483,11 @@ function startGame() {
 }
 
 document.addEventListener("keydown", (event) => {
-  // Saat tombol keyboard ditekan:
-  //     Jika tombol kiri:
-  //         geser player ke kiri
-  //     Jika tombol kanan:
-  //         geser player ke kanan
+  // When a keyboard key is pressed:
+  //     If the left key is pressed:
+  //         move the player left
+  //     If the right key is pressed:
+  //         move the player right
   if (!gameRunning) return;
 
   const moveStep = 25;
@@ -507,8 +507,8 @@ document.addEventListener("keydown", (event) => {
 });
 
 startBtn.addEventListener("click", () => {
-  // Saat tombol Start diklik:
-  //     (jalankan startGame yang melakukan reset state + mulai loop)
+  // When the Start button is clicked:
+  //     (run startGame to reset state and start the loops)
   if (gameRunning) return;
   stopGameLoops();
   startGame();
@@ -519,11 +519,11 @@ restartBtn.addEventListener("click", () => {
   startGame();
 });
 
-// Ambil leaderboard dari localStorage
-// Tampilkan leaderboard
+// Load the leaderboard from localStorage
+// Render the leaderboard
 renderLeaderboard();
 
 updatePlayerPosition();
 updateStartButtonState();
 
-// SELESAI
+// END

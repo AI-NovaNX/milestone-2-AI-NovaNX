@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>REVOFUN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Rajdhani:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+
+  <body class="selection:bg-cyan-300 selection:text-slate-950">
+    <div class="min-h-screen px-0 py-3 sm:px-0">
+      <header class="header-shell">
+        <div class="header-noise"></div>
+
+        <div
+          class="relative z-10 flex min-h-19 flex-col gap-4 px-4 py-3 sm:min-h-20.5 sm:flex-row sm:items-center sm:justify-between sm:px-7 lg:min-h-0 lg:px-8 lg:py-0"
+        >
+          <a href="indeks.html" aria-label="REVOFUN Home" class="header-brand">
+            <img
+              src="src/assets/REVOFUN-logo.png"
+              alt="REVOFUN"
+              class="header-logo select-none"
+            />
+          </a>
+
+          <nav
+            class="flex flex-wrap items-center gap-x-3.5 gap-y-2 self-end font-[Orbitron] text-[0.76rem] font-bold sm:self-auto sm:text-[0.92rem] lg:gap-x-4 lg:text-[1.02rem]"
+          >
+            <a href="#home" class="nav-link nav-link-active">Home</a>
+            <span
+              class="nav-divider hidden sm:inline-block"
+              aria-hidden="true"
+            ></span>
+            <a href="#games" class="nav-link">Games</a>
+            <span
+              class="nav-divider hidden sm:inline-block"
+              aria-hidden="true"
+            ></span>
+            <a href="#about" class="nav-link">About</a>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <section class="relative w-full" aria-label="About Us Hero">
+        <!-- background image — full screen width, no crop -->
+        <img
+          src="src/assets/about-us-background.png"
+          alt=""
+          aria-hidden="true"
+          class="block w-full"
+        />
+
+        <!-- dark gradient overlay for text legibility -->
+        <div
+          class="absolute inset-0"
+          style="
+            background: linear-gradient(
+              to bottom,
+              rgba(5, 1, 13, 0.18) 0%,
+              rgba(5, 1, 13, 0.42) 100%
+            );
+          "
+        ></div>
+
+        <!-- hero content -->
+        <div
+          class="absolute inset-0 flex flex-col items-center justify-center px-4 text-center"
+        >
+          <h1
+            class="font-[Orbitron] text-5xl font-extrabold tracking-widest text-amber-300 drop-shadow-[0_0_24px_rgba(255,200,50,0.85)] sm:text-6xl lg:text-7xl"
+            style="
+              text-shadow:
+                0 0 32px rgba(255, 195, 30, 0.9),
+                0 2px 12px rgba(0, 0, 0, 0.85);
+            "
+          >
+            ABOUT US
+          </h1>
+        </div>
+      </section>
+
+      <!-- Welcome Section -->
+      <section class="relative w-full" aria-label="Welcome to RevoFun">
+        <!-- background image — full width, height follows aspect ratio, no crop -->
+        <img
+          src="src/assets/welcome-background.png"
+          alt=""
+          aria-hidden="true"
+          class="block w-full"
+        />
+
+        <!-- content overlay -->
+        <div
+          class="absolute inset-0 flex flex-col items-center justify-center px-6 text-center sm:px-12 lg:px-24"
+        >
+          <!-- title -->
+          <h2
+            class="font-[Orbitron] text-2xl font-extrabold tracking-wide text-amber-300 sm:text-3xl lg:text-4xl"
+            style="
+              text-shadow:
+                0 0 24px rgba(255, 195, 30, 0.9),
+                0 2px 10px rgba(0, 0, 0, 0.85);
+            "
+          >
+            WELCOME TO REVOFUN!
+          </h2>
+
+          <!-- subtitle with decorative dashes -->
+          <div class="mt-2 flex items-center gap-3 sm:mt-3">
+            <span class="h-px w-10 bg-white opacity-70 sm:w-16"></span>
+            <p
+              class="font-[Rajdhani] text-sm font-bold tracking-widest text-white sm:text-base"
+            >
+              FUN GAMES FOR EVERYONE
+            </p>
+            <span class="h-px w-10 bg-white opacity-70 sm:w-16"></span>
+          </div>
+
+          <!-- body paragraphs -->
+          <p
+            class="mt-5 max-w-2xl font-[Rajdhani] text-sm leading-relaxed text-white sm:text-base lg:text-lg"
+            style="text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7)"
+          >
+            At RevoFun, we're all about bringing fun and excitement to your
+            fingertips! Our mission is to provide a diverse collection of free,
+            browser-based games that are easy to play and suitable for all ages.
+          </p>
+          <p
+            class="mt-4 max-w-2xl font-[Rajdhani] text-sm leading-relaxed text-white sm:text-base lg:text-lg"
+            style="text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7)"
+          >
+            Whether you're here for a quick gaming break or looking to dive into
+            a new challenge, RevoFun offers something for everyone. Our games
+            are designed to be played instantly in your web browser, no
+            downloads or installations needed, just pure fun!
+          </p>
+        </div>
+      </section>
+
+      <!-- Our Mission Section -->
+      <section class="relative w-full" aria-label="Our Mission">
+        <!-- background image — full width, height locked to aspect ratio -->
+        <img
+          src="src/assets/our-mission-background.png"
+          alt=""
+          aria-hidden="true"
+          class="block w-full"
+        />
+
+        <!-- content overlay — aligned to top so text sits in upper portion -->
+        <div
+          class="absolute inset-0 flex flex-col items-center px-6 pt-8 text-center sm:px-12 sm:pt-12 lg:px-24 lg:pt-16"
+        >
+          <!-- stars + title -->
+          <h2
+            class="font-[Orbitron] text-2xl font-extrabold tracking-wide text-amber-300 sm:text-3xl lg:text-4xl"
+            style="
+              text-shadow:
+                0 0 24px rgba(255, 195, 30, 0.9),
+                0 2px 10px rgba(0, 0, 0, 0.85);
+            "
+          >
+            ✦ OUR MISSION ✦
+          </h2>
+
+          <!-- subtitle with decorative dashes -->
+          <div class="mt-2 flex items-center gap-3 sm:mt-3">
+            <span class="h-px w-10 bg-white opacity-70 sm:w-16"></span>
+            <p
+              class="font-[Rajdhani] text-sm font-bold tracking-widest text-white sm:text-base"
+            >
+              BRINGING JOY TO GAMERS OF ALL AGES
+            </p>
+            <span class="h-px w-10 bg-white opacity-70 sm:w-16"></span>
+          </div>
+
+          <!-- body paragraph -->
+          <p
+            class="mt-6 max-w-2xl font-[Rajdhani] text-sm leading-relaxed text-white sm:text-base lg:text-lg"
+            style="text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7)"
+          >
+            Our mission at <strong>RevoFun</strong> is to create a fun and
+            engaging platform that brings joy to gamers of all ages. We believe
+            in the power of play to bring people together, relieve stress, and
+            provide a much-needed escape from the everyday routine!
+          </p>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

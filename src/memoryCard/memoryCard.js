@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const finalMessage = document.getElementById("finalMessage");
   const playAgainBtn = document.getElementById("playAgainBtn");
 
-  // MULAI
-  // Siapkan simbol kartu berpasangan
+  // START
+  // Prepare pairs of card symbols
   const cardSymbols = ["🍎", "🍌", "🍇", "🍒", "🍉", "🥝", "🍍", "🍓"];
 
   let cards = [];
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function createCards() {
-    // Acak posisi kartu
+    // Shuffle the card positions
     const duplicatedSymbols = [...cardSymbols, ...cardSymbols];
     const shuffledCards = shuffleArray(duplicatedSymbols);
 
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderBoard() {
-    // Tampilkan semua kartu dalam keadaan tertutup
+    // Render all cards face down
     gameBoard.innerHTML = "";
 
     cards.forEach((card) => {
@@ -98,10 +98,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function handleCardClick(event) {
-    // Saat kartu diklik:
-    //     Jika game belum aktif, abaikan
-    //     Jika kartu sudah matched, abaikan
-    //     Jika kartu sedang terbuka, abaikan
+    // When a card is clicked:
+    //     If the game is not active, ignore it
+    //     If the card is already matched, ignore it
+    //     If the card is already face up, ignore it
     const clickedCard = event.currentTarget;
     const clickedId = Number(clickedCard.dataset.id);
 
@@ -109,20 +109,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (clickedCard.classList.contains("flipped")) return;
     if (cards[clickedId].matched) return;
 
-    // Buka kartu
+    // Reveal the card
     clickedCard.classList.add("flipped");
 
-    // Jika belum ada kartu pertama:
-    //     simpan sebagai kartu pertama
+    // If there is no first card yet:
+    //     save it as the first card
     if (!firstCard) {
       firstCard = clickedCard;
       return;
     }
 
-    // Jika sudah ada kartu pertama:
-    //     simpan sebagai kartu kedua
-    //     tambah moves
-    //     bandingkan kedua kartu
+    // If there is already a first card:
+    //     save it as the second card
+    //     increase moves
+    //     compare both cards
     secondCard = clickedCard;
     lockBoard = true;
     moves++;
@@ -132,47 +132,47 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function checkMatch() {
-    // bandingkan kedua kartu
+    // Compare both cards
     const firstSymbol = firstCard.dataset.symbol;
     const secondSymbol = secondCard.dataset.symbol;
 
-    // Jika simbol sama:
-    //     tandai matched
-    //     tambah matches
-    //     kosongkan pilihan pertama dan kedua
+    // If the symbols match:
+    //     mark them as matched
+    //     increase matches
+    //     clear the first and second selection
     if (firstSymbol === secondSymbol) {
       markMatched();
     } else {
-      // Jika simbol berbeda:
-      //     tunggu sebentar
-      //     tutup kembali kedua kartu
-      //     kosongkan pilihan pertama dan kedua
+      // If the symbols are different:
+      //     wait briefly
+      //     flip both cards back over
+      //     clear the first and second selection
       unflipCards();
     }
   }
 
   function markMatched() {
-    // tandai matched
+    // Mark both cards as matched
     const firstId = Number(firstCard.dataset.id);
     const secondId = Number(secondCard.dataset.id);
 
     cards[firstId].matched = true;
     cards[secondId].matched = true;
 
-    // tambah matches
-    // kosongkan pilihan pertama dan kedua
+    // Increase matches
+    // Clear the first and second selection
     matchedPairs++;
     updateStats();
     resetTurn();
 
-    // Jika matches sama dengan jumlah pasangan:
-    //     hentikan timer
-    //     simpan skor ke localStorage
-    //     tampilkan pesan menang
+    // If matches equal the total number of pairs:
+    //     stop the timer
+    //     save the score to localStorage
+    //     show the win message
     if (matchedPairs === cardSymbols.length) {
       stopTimer();
-      messageText.textContent = `Selamat, ${playerName}! Kamu menyelesaikan game dalam ${moves} langkah.`;
-      finalMessage.textContent = `${playerName} menyelesaikan semua pasangan dalam ${moves} langkah dan waktu ${formatTime(secondsElapsed)}.`;
+      messageText.textContent = `Congratulations, ${playerName}! You completed the game in ${moves} moves.`;
+      finalMessage.textContent = `${playerName} completed all pairs in ${moves} moves and ${formatTime(secondsElapsed)}.`;
       resultOverlay.classList.remove("hidden");
       saveScore();
       renderLeaderboard();
@@ -199,9 +199,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function startGame() {
-    // Saat tombol Start Game diklik:
-    //     Ambil nickname
-    //     Jika nickname kosong:
+    // When the Start Game button is clicked:
+    //     Read the nickname
+    //     If the nickname is empty:
     //         nickname = "Player"
     stopTimer();
     playerName = nicknameInput.value.trim() || "Player";
@@ -216,14 +216,14 @@ document.addEventListener("DOMContentLoaded", () => {
     firstCard = null;
     secondCard = null;
     lockBoard = false;
-    messageText.textContent = "Game dimulai. Cocokkan semua pasangan kartu.";
+    messageText.textContent = "Game started. Match all card pairs.";
     resultOverlay.classList.add("hidden");
 
-    // Acak kartu lagi
+    // Shuffle the cards again
     createCards();
 
-    // Mulai timer
-    // Game aktif
+    // Start the timer
+    // Activate the game
     renderBoard();
     updateStats();
     updateTimer();
@@ -258,7 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
     leaderboardList.innerHTML = "";
 
     if (leaderboard.length === 0) {
-      leaderboardList.innerHTML = "<li>Belum ada skor tersimpan.</li>";
+      leaderboardList.innerHTML = "<li>No saved scores yet.</li>";
       return;
     }
 
@@ -294,9 +294,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Tampilkan leaderboard
+  // Render the leaderboard
   renderLeaderboard();
 
-  // Update timer setiap detik
+  // Update the timer each second
   updateTimer();
 });
