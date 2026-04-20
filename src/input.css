@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @source "../indeks.html";
 @source "../about-us.html";
+@source "../privacy.html";
 
 :root {
   --page-bg: #05010d;
