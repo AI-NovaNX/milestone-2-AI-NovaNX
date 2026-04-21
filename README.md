@@ -116,6 +116,57 @@ npm run build
 - `index.html` for the root entry point, or
 - `src/indeks.html` for the main homepage source file.
 
+## User Guide
+
+### How to Open the Homepage
+
+1. Open `index.html` from the root folder as the main entry point.
+2. The root entry will redirect users to the main homepage in `src/indeks.html`.
+
+### How to Navigate to About, Games, and Privacy
+
+1. From the homepage header, use the navigation menu to open:
+   - `Home`
+   - `Games`
+   - `About`
+2. On mobile screens, open the burger menu to access the same navigation links through the mobile overlay.
+3. To open the Privacy Policy or Terms of Service page, use the links in the footer section of the homepage.
+
+### How to Open a Game
+
+1. Scroll to the **Featured Games** section on the homepage.
+2. Choose one of the available games:
+   - Modern Battleship War
+   - Avoid the Falling Objects
+   - Memory Card Game
+3. Click the game card or the `Play` button to open the selected game.
+
+### How to Play Each Game
+
+#### Modern Battleship War
+
+1. Enter your nickname and save it.
+2. Choose a difficulty level.
+3. Place all ships on your board and rotate them when needed.
+4. Start the battle.
+5. Click cells on the enemy board to attack until all enemy ships are destroyed.
+
+#### Avoid the Falling Objects
+
+1. Enter your nickname.
+2. Click `Start Game`.
+3. Move the player using the keyboard left and right arrow keys.
+4. Avoid falling objects to gain score.
+5. Collect diamonds for bonus points and survive as long as possible.
+
+#### Memory Card Game
+
+1. Enter your nickname.
+2. Click `Start Game`.
+3. Click two cards to reveal them.
+4. Match identical cards to keep them open.
+5. Complete all card pairs using the fewest moves and shortest time possible.
+
 ## Notes
 
 - Leaderboard data is stored locally in the browser using `localStorage`.
