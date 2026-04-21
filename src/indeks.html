@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>REVOFUN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Rajdhani:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="selection:bg-cyan-300 selection:text-slate-950">
+    <div class="min-h-screen px-0 py-3 px-0 md:py-4">
+      <header class="header-shell">
+        <div class="header-noise"></div>
+
+        <div
+          class="relative z-10 flex min-h-19 items-center justify-between px-4 py-3 min-h-20.5 md:min-h-21 md:px-8 lg:min-h-0 lg:px-8 lg:py-0"
+        >
+          <a
+            href="indeks.html"
+            aria-label="REVOFUN Home"
+            data-logo-home
+            class="header-brand max-w-[16.8rem] md:max-w-none"
+          >
+            <img
+              src="assets/REVOFUN-logo.png"
+              alt="REVOFUN"
+              class="header-logo select-none"
+            />
+          </a>
+
+          <button
+            type="button"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[rgba(255,255,255,0.28)] bg-[rgba(18,6,42,0.45)] shadow-[0_8px_18px_rgba(8,3,20,0.45)] md:hidden"
+            data-mobile-menu-open
+            aria-label="Open menu"
+            aria-controls="mobile-menu-overlay"
+            aria-expanded="false"
+          >
+            <img
+              src="assets/burger-menu.png"
+              alt=""
+              aria-hidden="true"
+              class="h-5 w-5 h-5.5 w-5.5"
+            />
+          </button>
+
+          <nav
+            class="hidden items-center gap-x-4 font-[Orbitron] text-[0.97rem] font-bold md:flex lg:text-[1.02rem]"
+          >
+            <a href="#home" class="nav-link nav-link-active">Home</a>
+            <span class="nav-divider inline-block" aria-hidden="true"></span>
+            <a href="#games" class="nav-link">Games</a>
+            <span class="nav-divider inline-block" aria-hidden="true"></span>
+            <a href="about-us.html" class="nav-link">About</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <section
+          id="home"
+          class="relative left-1/2 mt-0 grid w-screen min-h-[24rem] -translate-x-1/2 place-items-center overflow-hidden bg-[#22094c] bg-[url('./assets/heroBackground.png')] bg-[length:100%_100%] bg-top bg-no-repeat shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_18px_36px_rgba(13,4,34,0.42)] min-h-[30rem] md:min-h-0 md:aspect-1437/676 md:bg-contain"
+          aria-labelledby="hero-title"
+          aria-describedby="hero-subtitle"
+        >
+          <div
+            class="absolute inset-0 bg-[linear-gradient(180deg,rgba(44,9,90,0.14),rgba(24,7,62,0.08)),radial-gradient(circle_at_center,rgba(120,46,255,0.08),rgba(18,5,47,0.14)_72%)]"
+          ></div>
+          <div
+            class="pointer-events-none absolute top-1/2 left-[18%] h-60 w-60 -translate-y-[58%] rounded-full bg-[radial-gradient(circle,rgba(255,141,86,0.22),rgba(255,141,86,0))] opacity-70 blur-xl"
+          ></div>
+          <div
+            class="pointer-events-none absolute top-1/2 right-[18%] h-60 w-60 -translate-y-[42%] rounded-full bg-[radial-gradient(circle,rgba(252,206,86,0.18),rgba(252,206,86,0))] opacity-70 blur-xl"
+          ></div>
+
+          <div
+            class="relative z-1 flex max-w-170 flex-col items-center text-center md:max-w-176 md:-translate-y-6 lg:-translate-y-25"
+          >
+            <p
+              class="mb-2 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(37,11,78,0.26)] px-4 py-1 font-[Orbitron] text-[0.78rem] font-bold tracking-[0.18em] text-[rgba(250,240,255,0.96)] [text-shadow:0_1px_0_rgba(53,17,97,0.95),0_0_12px_rgba(201,132,255,0.34)] shadow-[0_6px_18px_rgba(16,4,35,0.14)] backdrop-blur-[2px] text-[0.84rem] md:text-[0.84rem]"
+            >
+              REVOFUN ARCADE
+            </p>
+            <h1
+              id="hero-title"
+              class="m-0 font-[Orbitron] text-[1.62rem] font-extrabold leading-[0.94] tracking-[0.02em] uppercase text-[#ffe78c] [text-shadow:0_3px_0_rgba(103,22,154,0.95),0_0_18px_rgba(255,186,92,0.44),0_0_40px_rgba(233,125,255,0.28)] text-[2.2rem] md:text-[clamp(2rem,5vw,4.35rem)]"
+            >
+              Play Fun<br />Games Online!
+            </h1>
+            <p
+              id="hero-subtitle"
+              class="mt-3.5 rounded-full border border-[rgba(255,255,255,0.14)] bg-[rgba(22,8,52,0.34)] px-4 py-1.25 font-[Rajdhani] text-[0.82rem] font-bold tracking-[0.05em] uppercase text-[rgba(255,250,231,0.98)] [text-shadow:0_1px_0_rgba(46,18,78,0.95),0_0_14px_rgba(126,214,255,0.24)] shadow-[0_8px_24px_rgba(15,4,33,0.16)] backdrop-blur-[3px] px-5 py-1.5 text-[0.96rem] md:text-[clamp(0.98rem,1.6vw,1.28rem)] lg:mt-4"
+            >
+              Enjoy free games right in your browser!
+            </p>
+            <a
+              href="#games"
+              class="mt-5.5 inline-flex min-w-45.5 items-center justify-center rounded-2xl border-2 border-[rgba(255,129,239,0.7)] bg-[linear-gradient(180deg,rgba(255,91,246,0.98),rgba(158,17,189,0.96))] px-7 pt-3.25 pb-2.75 font-[Orbitron] text-[0.94rem] font-extrabold tracking-[0.05em] uppercase text-[#fff8ff] no-underline [text-shadow:0_2px_0_rgba(108,14,117,0.75)] shadow-[inset_0_0_0_2px_rgba(255,213,255,0.16),0_10px_22px_rgba(95,12,121,0.42),0_0_18px_rgba(255,95,248,0.55)] transition-[filter] duration-150 hover:brightness-105 text-[1.08rem] md:text-[clamp(1.02rem,1.6vw,1.5rem)] lg:mt-6.5"
+            >
+              Play Now
+            </a>
+          </div>
+        </section>
+
+        <section
+          id="games"
+          class="relative left-1/2 -mt-px w-screen -translate-x-1/2 overflow-hidden bg-[#190539] bg-[url('./assets/gameBackground.png')] bg-cover bg-top bg-no-repeat"
+          aria-labelledby="games-title"
+        >
+          <div
+            class="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,3,28,0.72),rgba(10,3,28,0.22),rgba(10,3,28,0.7))]"
+          ></div>
+
+          <div
+            class="relative mx-auto max-w-270 px-4 py-14 px-7 py-18 md:px-8 md:py-20 lg:px-8 lg:py-22"
+          >
+            <header class="text-center">
+              <p
+                class="mx-auto inline-flex rounded-full border border-[rgba(255,255,255,0.14)] bg-[rgba(22,8,52,0.32)] px-4 py-1 font-[Orbitron] text-[0.68rem] font-extrabold tracking-[0.18em] text-[rgba(250,240,255,0.96)] shadow-[0_10px_22px_rgba(6,2,18,0.22)] backdrop-blur-[2px] text-[0.86rem] md:text-[clamp(0.85rem,1.8vw,1.375rem)]"
+              >
+                FEATURED GAMES
+              </p>
+              <h2
+                id="games-title"
+                class="mt-4 font-[Orbitron] text-[1.3rem] font-extrabold uppercase tracking-[0.05em] text-[#ffe78c] [text-shadow:0_3px_0_rgba(103,22,154,0.85),0_0_18px_rgba(255,186,92,0.3)] text-[1.85rem] md:text-[clamp(1.7rem,3.6vw,2.75rem)]"
+              >
+                Choose Your Challenge
+              </h2>
+            </header>
+
+            <div
+              class="featured-games-grid mt-10 grid gap-7 mt-12 grid-cols-1 md:mt-13 md:gap-8 md:grid-cols-2 lg:mt-14 lg:grid-cols-3"
+            >
+              <div class="flex flex-col items-center gap-4">
+                <a
+                  href="battleship/battleship.html"
+                  class="group relative flex h-65 w-full items-center justify-center overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.14)] bg-[rgba(10,3,28,0.22)] shadow-[0_18px_36px_rgba(6,2,18,0.35)] h-80.25 md:h-84"
+                  aria-label="Open Battleship"
+                >
+                  <img
+                    src="assets/cardBattleship.png"
+                    alt="Modern Battleship War"
+                    class="h-full w-full object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                    loading="lazy"
+                  />
+                </a>
+                <a
+                  href="battleship/battleship.html"
+                  class="inline-flex w-full max-w-42 items-center justify-center rounded-2xl border-2 border-[rgba(255,129,239,0.75)] bg-[linear-gradient(180deg,rgba(255,91,246,0.98),rgba(158,17,189,0.96))] px-6 pt-2.25 pb-2 font-[Orbitron] text-[0.86rem] font-extrabold tracking-[0.05em] uppercase text-[#fff8ff] no-underline [text-shadow:0_2px_0_rgba(108,14,117,0.75)] shadow-[inset_0_0_0_2px_rgba(255,213,255,0.12),0_10px_22px_rgba(95,12,121,0.42),0_0_18px_rgba(255,95,248,0.45)] transition-[filter,transform] duration-150 hover:brightness-105 hover:-translate-y-0.5 md:w-full md:max-w-42 md:px-6 md:pt-2.25 md:pb-2 md:text-[0.86rem] md:tracking-[0.06em]"
+                  aria-label="Play Battleship"
+                >
+                  Play
+                </a>
+              </div>
+
+              <div class="flex flex-col items-center gap-4">
+                <a
+                  href="fallingObject/fallingObject.html"
+                  class="group relative flex h-65 w-full items-center justify-center overflow-hidden rounded-3xl bg-[rgba(10,3,28,0.22)] shadow-[0_18px_36px_rgba(6,2,18,0.35),0_0_22px_rgba(148,48,235,0.5)] h-80.25 md:h-84"
+                  aria-label="Open Falling Objects"
+                >
+                  <img
+                    src="assets/cardFalling.png"
+                    alt="Avoid the Falling Objects"
+                    class="h-full w-full object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                    loading="lazy"
+                  />
+                </a>
+                <a
+                  href="fallingObject/fallingObject.html"
+                  class="inline-flex w-full max-w-42 items-center justify-center rounded-2xl border-2 border-[rgba(255,129,239,0.75)] bg-[linear-gradient(180deg,rgba(255,91,246,0.98),rgba(158,17,189,0.96))] px-6 pt-2.25 pb-2 font-[Orbitron] text-[0.86rem] font-extrabold tracking-[0.05em] uppercase text-[#fff8ff] no-underline [text-shadow:0_2px_0_rgba(108,14,117,0.75)] shadow-[inset_0_0_0_2px_rgba(255,213,255,0.12),0_10px_22px_rgba(95,12,121,0.42),0_0_18px_rgba(255,95,248,0.45)] transition-[filter,transform] duration-150 hover:brightness-105 hover:-translate-y-0.5 md:w-full md:max-w-42 md:px-6 md:pt-2.25 md:pb-2 md:text-[0.86rem] md:tracking-[0.06em]"
+                  aria-label="Play Falling Objects"
+                >
+                  Play
+                </a>
+              </div>
+
+              <div
+                class="flex flex-col items-center gap-4 col-span-2 lg:col-span-1"
+              >
+                <a
+                  href="memoryCard/memoryCard.html"
+                  class="group relative flex h-65 w-full items-center justify-center overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.14)] bg-[rgba(10,3,28,0.22)] shadow-[0_18px_36px_rgba(6,2,18,0.35)] h-80.25 md:h-84"
+                  aria-label="Open Memory Card"
+                >
+                  <img
+                    src="assets/cardMemory.png"
+                    alt="Memory Card Game"
+                    class="h-full w-full object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                    loading="lazy"
+                  />
+                </a>
+                <a
+                  href="memoryCard/memoryCard.html"
+                  class="inline-flex w-full max-w-42 items-center justify-center rounded-2xl border-2 border-[rgba(255,129,239,0.75)] bg-[linear-gradient(180deg,rgba(255,91,246,0.98),rgba(158,17,189,0.96))] px-6 pt-2.25 pb-2 font-[Orbitron] text-[0.86rem] font-extrabold tracking-[0.05em] uppercase text-[#fff8ff] no-underline [text-shadow:0_2px_0_rgba(108,14,117,0.75)] shadow-[inset_0_0_0_2px_rgba(255,213,255,0.12),0_10px_22px_rgba(95,12,121,0.42),0_0_18px_rgba(255,95,248,0.45)] transition-[filter,transform] duration-150 hover:brightness-105 hover:-translate-y-0.5 md:w-full md:max-w-42 md:px-6 md:pt-2.25 md:pb-2 md:text-[0.86rem] md:tracking-[0.06em]"
+                  aria-label="Play Memory Card"
+                >
+                  Play
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer Section -->
+          <footer
+            class="relative z-10 border-t border-white/28 bg-transparent"
+            aria-label="Footer"
+          >
+            <div
+              class="flex flex-col items-center justify-between gap-2 px-5 py-2.5 flex-row px-7 md:px-8 lg:px-8"
+            >
+              <p
+                class="font-[Rajdhani] text-[0.62rem] font-bold tracking-wide text-white text-[0.7rem] md:text-xs"
+                style="text-shadow: 0 1px 5px rgba(0, 0, 0, 0.72)"
+              >
+                © 2026 RevoFun
+              </p>
+
+              <div class="flex items-center gap-4 gap-6">
+                <a
+                  href="privacy.html"
+                  class="font-[Rajdhani] text-[0.56rem] font-extrabold tracking-wide text-white no-underline text-[0.62rem] md:text-[0.68rem]"
+                  style="text-shadow: 0 1px 5px rgba(0, 0, 0, 0.72)"
+                  >PRIVACY POLICY</a
+                >
+                <a
+                  href="privacy.html#terms"
+                  class="font-[Rajdhani] text-[0.56rem] font-extrabold tracking-wide text-white no-underline text-[0.62rem] md:text-[0.68rem]"
+                  style="text-shadow: 0 1px 5px rgba(0, 0, 0, 0.72)"
+                  >TERMS OF SERVICE</a
+                >
+              </div>
+            </div>
+          </footer>
+        </section>
+      </main>
+    </div>
+
+    <script src="mobile-menu.js"></script>
+    <script src="indeks.js"></script>
+  </body>
+</html>

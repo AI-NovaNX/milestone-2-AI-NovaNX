@@ -290,7 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (backHomeBtn) {
     backHomeBtn.addEventListener("click", (event) => {
       event.preventDefault();
-      window.location.href = "../../indeks.html";
+      window.location.href = "../indeks.html";
     });
   }
 

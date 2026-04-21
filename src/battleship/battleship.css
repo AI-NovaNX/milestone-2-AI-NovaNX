@@ -472,6 +472,40 @@ button:disabled {
   }
 }
 
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .battleship-app {
+    max-width: 940px;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .top-controls {
+    grid-template-columns: repeat(2, minmax(210px, 1fr));
+    padding: 16px;
+  }
+
+  .status-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .boards-area,
+  .legend-leaderboard {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .board-card {
+    padding: 16px;
+    overflow-x: auto;
+  }
+}
+
 @media (min-width: 1024px) {
   .hero h1 {
     font-size: 2.65rem;

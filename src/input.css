@@ -1,7 +1,8 @@
 @import "tailwindcss";
-@source "../indeks.html";
-@source "../about-us.html";
-@source "../privacy.html";
+@source "./indeks.html";
+@source "./about-us.html";
+@source "./privacy.html";
+@source "./mobile-menu.html";
 
 :root {
   --page-bg: #05010d;
@@ -150,6 +151,13 @@ body {
   }
 }
 
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .header-brand {
+    width: 380px;
+    height: 40px;
+  }
+}
+
 @media (min-width: 1024px) {
   .header-brand {
     width: 472px;
@@ -239,6 +247,52 @@ nav:hover .nav-link-active:not(:hover)::after {
 }
 
 @media (max-width: 767.98px) {
+  .featured-games-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .featured-games-grid > .col-span-2 {
+    grid-column: span 1 / span 1;
+  }
+}
+
+@media (max-width: 767.98px) {
+  [data-logo-home] {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  [data-mobile-menu-open],
+  [data-mobile-menu-close]:is(button) {
+    cursor: pointer;
+    transition: all 150ms ease;
+  }
+
+  [data-mobile-menu-open]:hover,
+  [data-mobile-menu-close]:is(button):hover {
+    cursor: pointer;
+    background-color: rgba(18, 6, 42, 0.65);
+    border-color: rgba(255, 255, 255, 0.42);
+    box-shadow:
+      0 8px 18px rgba(8, 3, 20, 0.65),
+      0 0 16px rgba(255, 255, 255, 0.12);
+  }
+
+  [data-mobile-menu-open]:focus-visible,
+  [data-mobile-menu-close]:is(button):focus-visible {
+    outline: 2px solid rgba(153, 207, 255, 0.8);
+    outline-offset: 2px;
+    box-shadow:
+      0 8px 18px rgba(8, 3, 20, 0.65),
+      0 0 20px rgba(114, 183, 255, 0.6);
+  }
+
+  [data-mobile-menu-open]:active,
+  [data-mobile-menu-close]:is(button):active {
+    background-color: rgba(18, 6, 42, 0.8);
+    transform: scale(0.98);
+  }
+
   .about-community-section {
     overflow: hidden;
     padding-bottom: 1rem;
@@ -265,5 +319,30 @@ nav:hover .nav-link-active:not(:hover)::after {
 
   .about-page-footer {
     margin-top: 1.2rem !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .about-community-section {
+    overflow: hidden;
+  }
+
+  .about-community-overlay {
+    padding-top: 1.75rem;
+  }
+
+  .about-community-content {
+    max-width: 28rem;
+    transform: translateY(-0.2rem);
+  }
+
+  .about-community-copy {
+    margin-top: 0.55rem;
+    font-size: 0.84rem;
+    line-height: 1.36;
+  }
+
+  .about-community-social {
+    margin-top: 0.55rem;
   }
 }

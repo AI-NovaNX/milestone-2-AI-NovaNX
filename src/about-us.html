@@ -10,38 +10,53 @@
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Rajdhani:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="src/style.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body class="selection:bg-cyan-300 selection:text-slate-950">
-    <div class="min-h-screen px-0 py-3 sm:px-0">
+    <div class="min-h-screen px-0 py-3 px-0 md:py-4">
       <header class="header-shell">
         <div class="header-noise"></div>
 
         <div
-          class="relative z-10 flex min-h-19 flex-col gap-4 px-4 py-3 sm:min-h-20.5 sm:flex-row sm:items-center sm:justify-between sm:px-7 lg:min-h-0 lg:px-8 lg:py-0"
+          class="relative z-10 flex min-h-19 items-center justify-between px-4 py-3 min-h-20.5 md:min-h-21 md:px-8 lg:min-h-0 lg:px-8 lg:py-0"
         >
-          <a href="indeks.html" aria-label="REVOFUN Home" class="header-brand">
+          <a
+            href="indeks.html"
+            aria-label="REVOFUN Home"
+            data-logo-home
+            class="header-brand max-w-[16.8rem] md:max-w-none"
+          >
             <img
-              src="src/assets/REVOFUN-logo.png"
+              src="assets/REVOFUN-logo.png"
               alt="REVOFUN"
               class="header-logo select-none"
             />
           </a>
 
+          <button
+            type="button"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[rgba(255,255,255,0.28)] bg-[rgba(18,6,42,0.45)] shadow-[0_8px_18px_rgba(8,3,20,0.45)] md:hidden"
+            data-mobile-menu-open
+            aria-label="Open menu"
+            aria-controls="mobile-menu-overlay"
+            aria-expanded="false"
+          >
+            <img
+              src="assets/burger-menu.png"
+              alt=""
+              aria-hidden="true"
+              class="h-5 w-5 h-5.5 w-5.5"
+            />
+          </button>
+
           <nav
-            class="flex flex-wrap items-center gap-x-3.5 gap-y-2 self-center font-[Orbitron] text-[0.76rem] font-bold sm:self-auto sm:text-[0.92rem] lg:gap-x-4 lg:text-[1.02rem]"
+            class="hidden items-center gap-x-4 font-[Orbitron] text-[0.97rem] font-bold md:flex lg:text-[1.02rem]"
           >
             <a href="indeks.html" class="nav-link">Home</a>
-            <span
-              class="nav-divider hidden sm:inline-block"
-              aria-hidden="true"
-            ></span>
+            <span class="nav-divider inline-block" aria-hidden="true"></span>
             <a href="indeks.html#games" class="nav-link">Games</a>
-            <span
-              class="nav-divider hidden sm:inline-block"
-              aria-hidden="true"
-            ></span>
+            <span class="nav-divider inline-block" aria-hidden="true"></span>
             <a href="about-us.html" class="nav-link nav-link-active">About</a>
           </nav>
         </div>
@@ -51,7 +66,7 @@
       <section class="relative w-full" aria-label="About Us Hero">
         <!-- background image — full screen width, no crop -->
         <img
-          src="src/assets/about-us-background.png"
+          src="assets/about-us-background.png"
           alt=""
           aria-hidden="true"
           class="block w-full"
@@ -71,10 +86,10 @@
 
         <!-- hero content -->
         <div
-          class="absolute inset-0 flex flex-col items-center justify-center px-5 text-center sm:px-10 lg:px-16"
+          class="absolute inset-0 flex flex-col items-center justify-center px-5 text-center px-10 md:px-12 lg:px-16"
         >
           <h1
-            class="font-[Orbitron] text-[clamp(2.1rem,7vw,4.6rem)] font-extrabold tracking-[0.16em] text-amber-300 drop-shadow-[0_0_24px_rgba(255,200,50,0.85)]"
+            class="font-[Orbitron] text-[1.5rem] font-extrabold tracking-[0.16em] text-amber-300 drop-shadow-[0_0_24px_rgba(255,200,50,0.85)] text-[2.05rem] md:text-[clamp(2.1rem,7vw,4.6rem)] lg:text-[4.9rem]"
             style="
               text-shadow:
                 0 0 32px rgba(255, 195, 30, 0.9),
@@ -87,25 +102,28 @@
       </section>
 
       <!-- Welcome Section -->
-      <section class="relative w-full" aria-label="Welcome to RevoFun">
+      <section
+        class="relative w-full min-h-[25rem] overflow-hidden min-h-[31rem] md:min-h-0"
+        aria-label="Welcome to RevoFun"
+      >
         <!-- background image — full width, height follows aspect ratio, no crop -->
         <img
-          src="src/assets/welcome-background.png"
+          src="assets/welcome-background.png"
           alt=""
           aria-hidden="true"
-          class="block w-full"
+          class="absolute inset-0 h-full w-full object-fill md:static md:h-auto md:w-full"
         />
 
         <!-- content overlay -->
         <div
-          class="absolute inset-0 flex flex-col items-center justify-center px-5 text-center sm:px-10 lg:px-20"
+          class="absolute inset-0 flex flex-col items-center justify-center px-5 text-center px-10 md:px-14 lg:px-20"
         >
           <div
-            class="mx-auto flex w-full max-w-[18rem] flex-col items-center sm:max-w-2xl lg:max-w-3xl"
+            class="mx-auto flex w-full max-w-[18rem] flex-col items-center max-w-2xl md:max-w-136 lg:max-w-3xl"
           >
             <!-- title -->
             <h2
-              class="font-[Orbitron] text-[clamp(1.1rem,3.2vw,2.5rem)] font-extrabold tracking-[0.08em] text-amber-300"
+              class="font-[Orbitron] text-[0.9rem] font-extrabold tracking-[0.08em] text-amber-300 text-[1.2rem] md:text-[clamp(1.1rem,3.2vw,2.5rem)] lg:text-[2.7rem]"
               style="
                 text-shadow:
                   0 0 24px rgba(255, 195, 30, 0.9),
@@ -116,19 +134,19 @@
             </h2>
 
             <!-- subtitle with decorative dashes -->
-            <div class="mt-2 flex items-center gap-3 sm:mt-3">
-              <span class="h-px w-10 bg-white opacity-70 sm:w-16"></span>
+            <div class="mt-2 flex items-center gap-3 mt-3">
+              <span class="h-px w-10 bg-white opacity-70 w-16"></span>
               <p
-                class="font-[Rajdhani] text-[0.74rem] font-bold tracking-[0.18em] text-white sm:text-sm lg:text-base"
+                class="font-[Rajdhani] text-[0.62rem] font-bold tracking-[0.16em] text-white text-[0.78rem] md:text-[0.93rem] lg:text-base"
               >
                 FUN GAMES FOR EVERYONE
               </p>
-              <span class="h-px w-10 bg-white opacity-70 sm:w-16"></span>
+              <span class="h-px w-10 bg-white opacity-70 w-16"></span>
             </div>
 
             <!-- body paragraphs -->
             <p
-              class="mt-4 max-w-2xl font-[Rajdhani] text-[0.8rem] leading-relaxed text-white sm:mt-5 sm:text-sm lg:text-lg"
+              class="mt-3 max-w-2xl font-[Rajdhani] text-[0.72rem] leading-relaxed text-white mt-4 text-[0.84rem] md:mt-5 md:text-base lg:text-lg"
               style="text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7)"
             >
               At RevoFun, we're all about bringing fun and excitement to your
@@ -137,7 +155,7 @@
               all ages.
             </p>
             <p
-              class="mt-3 max-w-2xl font-[Rajdhani] text-[0.8rem] leading-relaxed text-white sm:mt-4 sm:text-sm lg:text-lg"
+              class="mt-2 max-w-2xl font-[Rajdhani] text-[0.72rem] leading-relaxed text-white mt-3 text-[0.84rem] md:mt-4 md:text-base lg:text-lg"
               style="text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7)"
             >
               Whether you're here for a quick gaming break or looking to dive
@@ -150,25 +168,28 @@
       </section>
 
       <!-- Our Mission Section -->
-      <section class="relative w-full" aria-label="Our Mission">
+      <section
+        class="relative w-full min-h-[24rem] overflow-hidden min-h-[30rem] md:min-h-0"
+        aria-label="Our Mission"
+      >
         <!-- background image — full width, height locked to aspect ratio -->
         <img
-          src="src/assets/our-mission-background.png"
+          src="assets/our-mission-background.png"
           alt=""
           aria-hidden="true"
-          class="block w-full"
+          class="absolute inset-0 h-full w-full object-fill md:static md:h-auto md:w-full"
         />
 
         <!-- content overlay — aligned to top so text sits in upper portion -->
         <div
-          class="absolute inset-0 flex flex-col items-center px-5 pt-7 text-center sm:px-12 sm:pt-12 lg:px-20 lg:pt-16"
+          class="absolute inset-0 flex flex-col items-center px-5 pt-7 text-center px-12 pt-12 md:px-14 md:pt-14 lg:px-20 lg:pt-16"
         >
           <div
-            class="mx-auto flex w-full max-w-[18rem] flex-col items-center sm:max-w-2xl lg:max-w-3xl"
+            class="mx-auto flex w-full max-w-[18rem] flex-col items-center max-w-2xl md:max-w-136 lg:max-w-3xl"
           >
             <!-- stars + title -->
             <h2
-              class="font-[Orbitron] text-[clamp(1.05rem,3vw,2.35rem)] font-extrabold tracking-[0.08em] text-amber-300"
+              class="font-[Orbitron] text-[0.86rem] font-extrabold tracking-[0.08em] text-amber-300 text-[1.08rem] md:text-[clamp(1.05rem,3vw,2.35rem)] lg:text-[2.55rem]"
               style="
                 text-shadow:
                   0 0 24px rgba(255, 195, 30, 0.9),
@@ -179,19 +200,19 @@
             </h2>
 
             <!-- subtitle with decorative dashes -->
-            <div class="mt-2 flex items-center gap-3 sm:mt-3">
-              <span class="h-px w-10 bg-white opacity-70 sm:w-16"></span>
+            <div class="mt-2 flex items-center gap-3 mt-3">
+              <span class="h-px w-10 bg-white opacity-70 w-16"></span>
               <p
-                class="font-[Rajdhani] text-[0.74rem] font-bold tracking-[0.16em] text-white sm:text-sm lg:text-base"
+                class="font-[Rajdhani] text-[0.6rem] font-bold tracking-[0.14em] text-white text-[0.76rem] md:text-[0.92rem] lg:text-base"
               >
                 BRINGING JOY TO GAMERS OF ALL AGES
               </p>
-              <span class="h-px w-10 bg-white opacity-70 sm:w-16"></span>
+              <span class="h-px w-10 bg-white opacity-70 w-16"></span>
             </div>
 
             <!-- body paragraph -->
             <p
-              class="mt-4 max-w-2xl font-[Rajdhani] text-[0.8rem] leading-relaxed text-white sm:mt-6 sm:text-sm lg:text-lg"
+              class="mt-3 max-w-2xl font-[Rajdhani] text-[0.7rem] leading-relaxed text-white mt-5 text-[0.84rem] md:mt-6 md:text-base lg:text-lg"
               style="text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7)"
             >
               Our mission at <strong>RevoFun</strong> is to create a fun and
@@ -210,20 +231,21 @@
         aria-label="Our Community"
       >
         <img
-          src="src/assets/our-community-background.png"
+          src="assets/our-community-background.png"
           alt=""
           aria-hidden="true"
           class="block w-full"
+          style="transform: translateY(-30px)"
         />
 
         <div
-          class="absolute inset-0 flex flex-col items-center px-5 pt-7 text-center sm:px-12 sm:pt-10 lg:px-20 lg:pt-12 about-community-overlay"
+          class="absolute inset-0 flex flex-col items-center px-5 pt-7 text-center px-12 pt-10 md:px-14 md:pt-11 lg:px-20 lg:pt-12 about-community-overlay"
         >
           <div
-            class="mx-auto flex w-full max-w-[18rem] flex-col items-center sm:max-w-2xl lg:max-w-3xl about-community-content"
+            class="mx-auto flex w-full max-w-[18rem] flex-col items-center max-w-2xl md:max-w-136 lg:max-w-3xl about-community-content"
           >
             <h2
-              class="font-[Orbitron] text-[clamp(0.98rem,2.7vw,2rem)] font-extrabold tracking-[0.08em] text-amber-300"
+              class="font-[Orbitron] text-[0.78rem] font-extrabold tracking-[0.08em] text-amber-300 text-[0.94rem] md:text-[clamp(0.98rem,2.7vw,2rem)] lg:text-[2.2rem]"
               style="
                 text-shadow:
                   0 0 20px rgba(255, 195, 30, 0.9),
@@ -233,18 +255,18 @@
               ✦ OUR COMMUNITY ✦
             </h2>
 
-            <div class="mt-1 flex items-center gap-2 sm:mt-2 sm:gap-3">
-              <span class="h-px w-8 bg-white opacity-70 sm:w-12"></span>
+            <div class="mt-1 flex items-center gap-2 mt-2 gap-3">
+              <span class="h-px w-8 bg-white opacity-70 w-12"></span>
               <p
-                class="font-[Rajdhani] text-[0.68rem] font-bold tracking-[0.16em] text-white sm:text-xs lg:text-sm"
+                class="font-[Rajdhani] text-[0.54rem] font-bold tracking-[0.14em] text-white text-[0.66rem] md:text-[0.83rem] lg:text-sm"
               >
                 CONNECT WITH FELLOW GAMERS
               </p>
-              <span class="h-px w-8 bg-white opacity-70 sm:w-12"></span>
+              <span class="h-px w-8 bg-white opacity-70 w-12"></span>
             </div>
 
             <p
-              class="mt-2 max-w-3xl font-[Rajdhani] text-[0.76rem] leading-relaxed text-white sm:mt-3 sm:text-sm lg:text-base about-community-copy"
+              class="mt-1.5 max-w-3xl font-[Rajdhani] text-[0.64rem] leading-relaxed text-white mt-2.5 text-[0.78rem] md:mt-3 md:text-base lg:text-base about-community-copy"
               style="text-shadow: 0 1px 6px rgba(0, 0, 0, 0.72)"
             >
               Join us and start playing today. Let's make every gaming session a
@@ -252,7 +274,7 @@
             </p>
 
             <div
-              class="mt-3 flex items-center gap-3 sm:mt-4 sm:gap-4 about-community-social"
+              class="mt-3 flex items-center gap-3 mt-4 gap-4 about-community-social"
             >
               <a
                 href="#"
@@ -260,9 +282,9 @@
                 class="transition-opacity hover:opacity-80"
               >
                 <img
-                  src="src/assets/dribble.svg"
+                  src="assets/dribble.svg"
                   alt="Dribbble"
-                  class="h-7 w-7 sm:h-8 sm:w-8"
+                  class="h-7 w-7 h-8 w-8"
                 />
               </a>
               <a
@@ -271,9 +293,9 @@
                 class="transition-opacity hover:opacity-80"
               >
                 <img
-                  src="src/assets/instagram.svg"
+                  src="assets/instagram.svg"
                   alt="Instagram"
-                  class="h-7 w-7 sm:h-8 sm:w-8"
+                  class="h-7 w-7 h-8 w-8"
                 />
               </a>
               <a
@@ -282,9 +304,9 @@
                 class="transition-opacity hover:opacity-80"
               >
                 <img
-                  src="src/assets/linkedin.svg"
+                  src="assets/linkedin.svg"
                   alt="LinkedIn"
-                  class="h-7 w-7 sm:h-8 sm:w-8"
+                  class="h-7 w-7 h-8 w-8"
                 />
               </a>
             </div>
@@ -298,25 +320,25 @@
         aria-label="Footer"
       >
         <div
-          class="flex flex-col items-center justify-between gap-2 px-5 py-2.5 sm:flex-row sm:px-7 lg:px-8"
+          class="flex flex-col items-center justify-between gap-2 px-5 py-2.5 flex-row px-7 md:gap-3 md:px-8 md:py-3 lg:px-8"
         >
           <p
-            class="font-[Rajdhani] text-[0.68rem] font-bold tracking-wide text-white sm:text-xs"
+            class="font-[Rajdhani] text-[0.68rem] font-bold tracking-wide text-white text-xs md:text-[0.8rem] lg:text-sm"
             style="text-shadow: 0 1px 5px rgba(0, 0, 0, 0.72)"
           >
             © 2026 RevoFun
           </p>
 
-          <div class="flex items-center gap-4 sm:gap-6">
+          <div class="flex items-center gap-4 gap-6 md:gap-7">
             <a
               href="privacy.html"
-              class="font-[Rajdhani] text-[0.62rem] font-extrabold tracking-wide text-white no-underline sm:text-[0.68rem]"
+              class="font-[Rajdhani] text-[0.62rem] font-extrabold tracking-wide text-white no-underline text-[0.68rem] md:text-[0.72rem] lg:text-[0.74rem]"
               style="text-shadow: 0 1px 5px rgba(0, 0, 0, 0.72)"
               >PRIVACY POLICY</a
             >
             <a
               href="privacy.html#terms"
-              class="font-[Rajdhani] text-[0.62rem] font-extrabold tracking-wide text-white no-underline sm:text-[0.68rem]"
+              class="font-[Rajdhani] text-[0.62rem] font-extrabold tracking-wide text-white no-underline text-[0.68rem] md:text-[0.72rem] lg:text-[0.74rem]"
               style="text-shadow: 0 1px 5px rgba(0, 0, 0, 0.72)"
               >TERMS OF SERVICE</a
             >
@@ -324,5 +346,6 @@
         </div>
       </footer>
     </div>
+    <script src="mobile-menu.js"></script>
   </body>
 </html>

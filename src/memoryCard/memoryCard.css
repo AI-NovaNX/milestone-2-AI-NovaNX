@@ -522,6 +522,35 @@ button:hover,
   }
 }
 
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .page-wrapper {
+    padding: 15px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  .game-layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    align-items: start;
+  }
+
+  .board-section {
+    grid-column: 1 / -1;
+    order: -1;
+  }
+
+  .memory-board {
+    height: clamp(440px, 58vh, 560px);
+  }
+}
+
 @media (min-width: 1024px) {
   .game-layout {
     grid-template-columns: clamp(250px, 24vw, 310px) minmax(0, 1fr) clamp(
