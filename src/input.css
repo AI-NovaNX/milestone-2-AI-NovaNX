@@ -144,6 +144,10 @@ body {
   transform-origin: left center;
 }
 
+.about-community-bg-image {
+  transform: translateY(-30px);
+}
+
 @media (min-width: 640px) {
   .header-brand {
     width: 396px;
@@ -298,6 +302,10 @@ nav:hover .nav-link-active:not(:hover)::after {
     padding-bottom: 1rem;
   }
 
+  .about-community-bg-image {
+    transform: translateY(45px);
+  }
+
   .about-community-overlay {
     padding-top: 0.85rem;
   }
@@ -323,6 +331,10 @@ nav:hover .nav-link-active:not(:hover)::after {
 }
 
 @media (min-width: 768px) and (max-width: 1023.98px) {
+  .about-community-bg-image {
+    transform: translateY(45px);
+  }
+
   .about-community-section {
     overflow: hidden;
   }
