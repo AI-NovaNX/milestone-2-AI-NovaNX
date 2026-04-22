@@ -51,6 +51,7 @@ The main goal of this project is to showcase a fictional gaming company called *
 - **CSS3** for game styling and custom UI
 - **Tailwind CSS v4** for the main website styling workflow
 - **Responsive Design** using mobile-first breakpoints: `sm`, `md`, and `lg`
+- **HTML5 Video Background** for animated hero section visuals (autoplay, muted, loop, responsive overlays)
 - **JavaScript (Vanilla JS)** for interactivity and game logic
 - **LocalStorage** for saving leaderboard data in the browser
 - **Google Fonts** for branding and typography
