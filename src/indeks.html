@@ -69,12 +69,28 @@
       <main>
         <section
           id="home"
-          class="relative left-1/2 mt-0 grid w-screen min-h-[24rem] -translate-x-1/2 place-items-center overflow-hidden bg-[#22094c] bg-[url('./assets/heroBackground.png')] bg-[length:100%_100%] bg-top bg-no-repeat shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_18px_36px_rgba(13,4,34,0.42)] min-h-[30rem] md:min-h-0 md:aspect-1437/676 md:bg-contain"
+          class="relative left-1/2 mt-0 grid w-screen min-h-[24rem] -translate-x-1/2 place-items-center overflow-hidden bg-[#22094c] shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_18px_36px_rgba(13,4,34,0.42)] min-h-[30rem] md:min-h-0 md:aspect-1437/676"
           aria-labelledby="hero-title"
           aria-describedby="hero-subtitle"
         >
+          <video
+            class="absolute inset-0 h-full w-full object-cover object-center [filter:brightness(0.90)_contrast(1.2)_saturate(1.08)]"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="assets/heroBackground.png"
+            aria-hidden="true"
+          >
+            <source src="assets/modern-battleship-war.mp4" type="video/mp4" />
+          </video>
+          <div class="absolute inset-0 bg-[rgba(5,2,18,0.22)]"></div>
           <div
             class="absolute inset-0 bg-[linear-gradient(180deg,rgba(44,9,90,0.14),rgba(24,7,62,0.08)),radial-gradient(circle_at_center,rgba(120,46,255,0.08),rgba(18,5,47,0.14)_72%)]"
+          ></div>
+          <div
+            class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.06),rgba(8,3,20,0.28)_58%,rgba(6,2,14,0.68)_100%)]"
           ></div>
           <div
             class="pointer-events-none absolute top-1/2 left-[18%] h-60 w-60 -translate-y-[58%] rounded-full bg-[radial-gradient(circle,rgba(255,141,86,0.22),rgba(255,141,86,0))] opacity-70 blur-xl"
