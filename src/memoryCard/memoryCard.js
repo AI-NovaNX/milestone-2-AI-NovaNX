@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const nicknameInput = document.getElementById("nickname");
   const startBtn = document.getElementById("startBtn");
   const restartBtn = document.getElementById("restartBtn");
-  const backHomeBtn = document.querySelector(".back-home-btn");
 
   const gameBoard = document.getElementById("memoryBoard");
   const movesText = document.getElementById("moves");
@@ -14,20 +13,47 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultOverlay = document.getElementById("resultOverlay");
   const finalMessage = document.getElementById("finalMessage");
   const playAgainBtn = document.getElementById("playAgainBtn");
+  const MIN_NICKNAME_LENGTH = 3;
 
   // START
   // Prepare pairs of card symbols
   const cardSymbols = ["🍎", "🍌", "🍇", "🍒", "🍉", "🥝", "🍍", "🍓"];
 
   let cards = [];
-  let firstCard = null;
-  let secondCard = null;
+  let firstCardId = null;
+  let secondCardId = null;
   let lockBoard = false;
   let moves = 0;
   let matchedPairs = 0;
   let playerName = "Player";
   let timerInterval = null;
   let secondsElapsed = 0;
+
+  function setNicknameInvalidState(isInvalid) {
+    nicknameInput.classList.toggle("input-invalid", isInvalid);
+
+    if (isInvalid) {
+      nicknameInput.setCustomValidity(
+        `Nickname must be at least ${MIN_NICKNAME_LENGTH} characters.`,
+      );
+      nicknameInput.reportValidity();
+      return;
+    }
+
+    nicknameInput.setCustomValidity("");
+  }
+
+  function getValidatedNickname() {
+    const value = nicknameInput.value.trim();
+
+    if (value.length < MIN_NICKNAME_LENGTH) {
+      setNicknameInvalidState(true);
+      return null;
+    }
+
+    setNicknameInvalidState(false);
+    return value;
+  }
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -47,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         id: index,
         symbol: symbol,
         matched: false,
+        flipped: false,
       };
     });
   }
@@ -59,7 +86,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const cardElement = document.createElement("div");
       cardElement.classList.add("memory-card");
       cardElement.dataset.id = card.id;
-      cardElement.dataset.symbol = card.symbol;
+
+      if (card.flipped) {
+        cardElement.classList.add("flipped");
+      }
+
+      if (card.matched) {
+        cardElement.classList.add("matched");
+      }
 
       cardElement.innerHTML = `
         <div class="memory-card-inner">
@@ -71,6 +105,22 @@ document.addEventListener("DOMContentLoaded", () => {
       cardElement.addEventListener("click", handleCardClick);
       gameBoard.appendChild(cardElement);
     });
+  }
+
+  function getCardElement(cardId) {
+    return gameBoard.querySelector(`.memory-card[data-id="${cardId}"]`);
+  }
+
+  function updateCardElement(cardId) {
+    const cardElement = getCardElement(cardId);
+    const cardState = cards[cardId];
+
+    if (!cardElement || !cardState) {
+      return;
+    }
+
+    cardElement.classList.toggle("flipped", cardState.flipped);
+    cardElement.classList.toggle("matched", cardState.matched);
   }
 
   function formatTime(totalSeconds) {
@@ -104,18 +154,21 @@ document.addEventListener("DOMContentLoaded", () => {
     //     If the card is already face up, ignore it
     const clickedCard = event.currentTarget;
     const clickedId = Number(clickedCard.dataset.id);
+    const clickedState = cards[clickedId];
 
     if (lockBoard) return;
-    if (clickedCard.classList.contains("flipped")) return;
-    if (cards[clickedId].matched) return;
+    if (!clickedState) return;
+    if (clickedState.flipped) return;
+    if (clickedState.matched) return;
 
     // Reveal the card
-    clickedCard.classList.add("flipped");
+    clickedState.flipped = true;
+    updateCardElement(clickedId);
 
     // If there is no first card yet:
     //     save it as the first card
-    if (!firstCard) {
-      firstCard = clickedCard;
+    if (firstCardId === null) {
+      firstCardId = clickedId;
       return;
     }
 
@@ -123,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //     save it as the second card
     //     increase moves
     //     compare both cards
-    secondCard = clickedCard;
+    secondCardId = clickedId;
     lockBoard = true;
     moves++;
     updateStats();
@@ -133,8 +186,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function checkMatch() {
     // Compare both cards
-    const firstSymbol = firstCard.dataset.symbol;
-    const secondSymbol = secondCard.dataset.symbol;
+    const firstSymbol = cards[firstCardId]?.symbol;
+    const secondSymbol = cards[secondCardId]?.symbol;
 
     // If the symbols match:
     //     mark them as matched
@@ -153,11 +206,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function markMatched() {
     // Mark both cards as matched
-    const firstId = Number(firstCard.dataset.id);
-    const secondId = Number(secondCard.dataset.id);
-
-    cards[firstId].matched = true;
-    cards[secondId].matched = true;
+    cards[firstCardId].matched = true;
+    cards[secondCardId].matched = true;
+    updateCardElement(firstCardId);
+    updateCardElement(secondCardId);
 
     // Increase matches
     // Clear the first and second selection
@@ -180,16 +232,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function unflipCards() {
+    const selectedFirstId = firstCardId;
+    const selectedSecondId = secondCardId;
+
     setTimeout(() => {
-      firstCard.classList.remove("flipped");
-      secondCard.classList.remove("flipped");
+      cards[selectedFirstId].flipped = false;
+      cards[selectedSecondId].flipped = false;
+      updateCardElement(selectedFirstId);
+      updateCardElement(selectedSecondId);
       resetTurn();
     }, 900);
   }
 
   function resetTurn() {
-    firstCard = null;
-    secondCard = null;
+    firstCardId = null;
+    secondCardId = null;
     lockBoard = false;
   }
 
@@ -201,10 +258,14 @@ document.addEventListener("DOMContentLoaded", () => {
   function startGame() {
     // When the Start Game button is clicked:
     //     Read the nickname
-    //     If the nickname is empty:
-    //         nickname = "Player"
+    //     Validate minimum nickname length
     stopTimer();
-    playerName = nicknameInput.value.trim() || "Player";
+    const validNickname = getValidatedNickname();
+    if (!validNickname) {
+      return;
+    }
+
+    playerName = validNickname;
     playerNameText.textContent = playerName;
 
     // Reset moves = 0
@@ -213,8 +274,8 @@ document.addEventListener("DOMContentLoaded", () => {
     moves = 0;
     matchedPairs = 0;
     secondsElapsed = 0;
-    firstCard = null;
-    secondCard = null;
+    firstCardId = null;
+    secondCardId = null;
     lockBoard = false;
     messageText.textContent = "Game started. Match all card pairs.";
     resultOverlay.classList.add("hidden");
@@ -287,12 +348,11 @@ document.addEventListener("DOMContentLoaded", () => {
   restartBtn.addEventListener("click", startGame);
   playAgainBtn.addEventListener("click", startGame);
 
-  if (backHomeBtn) {
-    backHomeBtn.addEventListener("click", (event) => {
-      event.preventDefault();
-      window.location.href = "../indeks.html";
-    });
-  }
+  nicknameInput.addEventListener("input", () => {
+    if (nicknameInput.value.trim().length >= MIN_NICKNAME_LENGTH) {
+      setNicknameInvalidState(false);
+    }
+  });
 
   // Render the leaderboard
   renderLeaderboard();

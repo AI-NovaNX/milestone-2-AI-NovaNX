@@ -4,7 +4,7 @@
   const MENU_TEMPLATE = `
 <div
   id="mobile-menu-overlay"
-  class="fixed inset-0 z-[120] hidden md:hidden"
+  class="fixed inset-0 z-120 hidden md:hidden"
   role="dialog"
   aria-modal="true"
   aria-label="Mobile navigation"
@@ -17,7 +17,7 @@
   <div class="relative z-10 flex h-full w-full flex-col">
     <header class="header-shell">
       <div class="header-noise"></div>
-      <div class="relative z-10 flex min-h-19 items-center justify-between px-4 py-3 min-h-20.5">
+      <div class="relative z-10 flex min-h-20.5 items-center justify-between px-4 py-3">
         <a
           href="indeks.html"
           aria-label="REVOFUN Home"
@@ -41,31 +41,31 @@
             src="assets/x-close.png"
             alt=""
             aria-hidden="true"
-            class="h-5 w-5 h-5.5 w-5.5"
+            class="h-5.5 w-5.5"
           />
         </button>
       </div>
     </header>
 
     <nav
-      class="flex flex-1 flex-col items-center justify-center gap-5 px-6 text-center gap-6"
+      class="flex flex-1 flex-col items-center justify-center gap-6 px-6 text-center"
       aria-label="Mobile navigation links"
     >
       <a
         href="indeks.html"
-        class="inline-flex min-w-52 items-center justify-center rounded-2xl border border-[rgba(255,255,255,0.28)] bg-[rgba(22,8,52,0.45)] px-6 py-3 font-[Orbitron] text-[0.95rem] font-extrabold tracking-[0.08em] uppercase text-white no-underline shadow-[0_10px_20px_rgba(8,3,20,0.4)] text-[1.02rem]"
+        class="inline-flex min-w-52 items-center justify-center rounded-2xl border border-[rgba(255,255,255,0.28)] bg-[rgba(22,8,52,0.45)] px-6 py-3 font-[Orbitron] text-[1.02rem] font-extrabold tracking-[0.08em] uppercase text-white no-underline shadow-[0_10px_20px_rgba(8,3,20,0.4)]"
       >
         Home
       </a>
       <a
         href="indeks.html#games"
-        class="inline-flex min-w-52 items-center justify-center rounded-2xl border border-[rgba(255,255,255,0.28)] bg-[rgba(22,8,52,0.45)] px-6 py-3 font-[Orbitron] text-[0.95rem] font-extrabold tracking-[0.08em] uppercase text-white no-underline shadow-[0_10px_20px_rgba(8,3,20,0.4)] text-[1.02rem]"
+        class="inline-flex min-w-52 items-center justify-center rounded-2xl border border-[rgba(255,255,255,0.28)] bg-[rgba(22,8,52,0.45)] px-6 py-3 font-[Orbitron] text-[1.02rem] font-extrabold tracking-[0.08em] uppercase text-white no-underline shadow-[0_10px_20px_rgba(8,3,20,0.4)]"
       >
         Games
       </a>
       <a
         href="about-us.html"
-        class="inline-flex min-w-52 items-center justify-center rounded-2xl border border-[rgba(255,255,255,0.28)] bg-[rgba(22,8,52,0.45)] px-6 py-3 font-[Orbitron] text-[0.95rem] font-extrabold tracking-[0.08em] uppercase text-white no-underline shadow-[0_10px_20px_rgba(8,3,20,0.4)] text-[1.02rem]"
+        class="inline-flex min-w-52 items-center justify-center rounded-2xl border border-[rgba(255,255,255,0.28)] bg-[rgba(22,8,52,0.45)] px-6 py-3 font-[Orbitron] text-[1.02rem] font-extrabold tracking-[0.08em] uppercase text-white no-underline shadow-[0_10px_20px_rgba(8,3,20,0.4)]"
       >
         About
       </a>

@@ -119,6 +119,16 @@ select {
   padding: 11px 12px;
   background: #f8fafc;
   color: #0f172a;
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+input.input-invalid {
+  border: 2px solid #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+  background: #fff5f5;
 }
 
 button,
@@ -295,11 +305,15 @@ button:disabled {
 .hit-cell {
   background: var(--hit);
   color: white;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  animation: hit-flash 0.5s ease-out;
 }
 
 .miss-cell {
   background: var(--miss);
   color: white;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+  animation: miss-wave 0.38s ease-out;
 }
 
 .preview-ok {
@@ -333,6 +347,28 @@ button:disabled {
   100% {
     transform: scale(2.4);
     opacity: 0;
+  }
+}
+
+@keyframes hit-flash {
+  0% {
+    transform: scale(0.9);
+    filter: brightness(1.6);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+@keyframes miss-wave {
+  0% {
+    transform: scale(0.94);
+    filter: brightness(1.28);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
   }
 }
 

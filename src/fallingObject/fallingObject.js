@@ -28,6 +28,7 @@ const CHAMPION_SCORE = 5000;
 const BASE_SPAWN_INTERVAL = 800;
 const SPAWN_INTERVAL_STEP = 50;
 const MIN_SPAWN_INTERVAL = 350;
+const MIN_NICKNAME_LENGTH = 3;
 const playerEmoji = "😎";
 const diamondBonusPlayerEmoji = "😄";
 const gameOverPlayerEmoji = "🤪";
@@ -62,6 +63,39 @@ let currentLevel = 1;
 let levelBannerTimeout = null;
 let championAchieved = false;
 const startButtonLabel = "Start Game";
+
+function setNicknameInvalidState(isInvalid, message = "") {
+  nicknameInput.classList.toggle("input-invalid", isInvalid);
+
+  if (!isInvalid) {
+    nicknameInput.setCustomValidity("");
+    return;
+  }
+
+  nicknameInput.setCustomValidity(message);
+  nicknameInput.reportValidity();
+}
+
+function getValidatedPlayerName() {
+  const value = nicknameInput.value.trim();
+
+  if (value.length < MIN_NICKNAME_LENGTH) {
+    setNicknameInvalidState(
+      true,
+      `Nickname must be at least ${MIN_NICKNAME_LENGTH} characters.`,
+    );
+    return null;
+  }
+
+  setNicknameInvalidState(false);
+  return value;
+}
+
+function movePlayerToX(nextX) {
+  const maxX = gameArea.clientWidth - player.offsetWidth;
+  playerX = Math.min(Math.max(nextX, 0), maxX);
+  updatePlayerPosition();
+}
 
 function updateStartButtonState() {
   startBtn.disabled = gameRunning;
@@ -358,20 +392,22 @@ function updateObjects() {
     };
 
     if (isColliding(objCircle, playerCircle)) {
-      if (obj.emoji === "💎") {
-        score += 50;
-        updateScoreDisplay();
-        updateLevelProgress();
-        updateMessage(`${playerName} mendapatkan bonus diamond +50 poin.`);
-        showDiamondBonusPlayer();
-        showScorePopup(obj.x, obj.y, 50);
-        obj.element.remove();
-        fallingObjects.splice(i, 1);
-        continue;
-      }
+      switch (obj.emoji) {
+        case "💎":
+          score += 50;
+          updateScoreDisplay();
+          updateLevelProgress();
+          updateMessage(`${playerName} mendapatkan bonus diamond +50 poin.`);
+          showDiamondBonusPlayer();
+          showScorePopup(obj.x, obj.y, 50);
+          obj.element.remove();
+          fallingObjects.splice(i, 1);
+          continue;
 
-      endGame();
-      return;
+        default:
+          endGame();
+          return;
+      }
     }
 
     if (obj.y > gameArea.clientHeight) {
@@ -450,7 +486,12 @@ function startGame() {
   //     Read the nickname
   //     If the nickname is empty:
   //         use the default "Player"
-  playerName = nicknameInput.value.trim() || "Player";
+  const validatedName = getValidatedPlayerName();
+  if (!validatedName) {
+    return;
+  }
+
+  playerName = validatedName;
   if (playerNameDisplay) {
     playerNameDisplay.textContent = playerName;
   }
@@ -491,18 +532,44 @@ document.addEventListener("keydown", (event) => {
   if (!gameRunning) return;
 
   const moveStep = 25;
-  const maxX = gameArea.clientWidth - player.offsetWidth;
 
   if (event.key === "ArrowLeft") {
-    playerX -= moveStep;
-    if (playerX < 0) playerX = 0;
-    updatePlayerPosition();
+    movePlayerToX(playerX - moveStep);
   }
 
   if (event.key === "ArrowRight") {
-    playerX += moveStep;
-    if (playerX > maxX) playerX = maxX;
-    updatePlayerPosition();
+    movePlayerToX(playerX + moveStep);
+  }
+});
+
+gameArea.addEventListener("touchstart", (event) => {
+  if (!gameRunning || event.touches.length === 0) {
+    return;
+  }
+
+  const touch = event.touches[0];
+  const bounds = gameArea.getBoundingClientRect();
+  movePlayerToX(touch.clientX - bounds.left - player.offsetWidth / 2);
+});
+
+gameArea.addEventListener(
+  "touchmove",
+  (event) => {
+    if (!gameRunning || event.touches.length === 0) {
+      return;
+    }
+
+    event.preventDefault();
+    const touch = event.touches[0];
+    const bounds = gameArea.getBoundingClientRect();
+    movePlayerToX(touch.clientX - bounds.left - player.offsetWidth / 2);
+  },
+  { passive: false },
+);
+
+nicknameInput.addEventListener("input", () => {
+  if (nicknameInput.value.trim().length >= MIN_NICKNAME_LENGTH) {
+    setNicknameInvalidState(false);
   }
 });
 

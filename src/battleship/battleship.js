@@ -24,6 +24,7 @@ const BATTLESHIP_SCORE_PER_HIT = Object.freeze({
 });
 
 const BATTLESHIP_SUNK_BONUS = 50;
+const BATTLESHIP_MIN_NICKNAME_LENGTH = 3;
 
 const battleshipState = {
   playerName: "Guest",
@@ -39,8 +40,8 @@ const battleshipState = {
   enemyBoard: [],
   playerShips: [],
   enemyShips: [],
+  // Queue of nearby cells to target after a successful hit.
   aiTargets: [],
-  aiHitsStack: [],
   aiTried: new Set(),
 };
 
@@ -67,15 +68,14 @@ const battleshipEls = {
 };
 
 function battleshipGetBoardSizeForDifficulty(difficulty) {
-  if (difficulty === "hard") {
-    return 16;
+  switch (difficulty) {
+    case "hard":
+      return 16;
+    case "medium":
+      return 12;
+    default:
+      return 8;
   }
-
-  if (difficulty === "medium") {
-    return 12;
-  }
-
-  return 8;
 }
 
 function battleshipGetColumnLabel(index) {
@@ -85,7 +85,7 @@ function battleshipGetColumnLabel(index) {
 
   while (n > 0) {
     const r = (n - 1) % 26;
-    label = String.fromCharCode(65 + r) + label;
+    label = `${String.fromCharCode(65 + r)}${label}`;
     n = Math.floor((n - 1) / 26);
   }
 
@@ -320,7 +320,7 @@ function battleshipBuildBoard(board, kind) {
     // Render the row coordinates
     const rowCoord = document.createElement("div");
     rowCoord.className = "coord-cell";
-    rowCoord.textContent = row + 1;
+    rowCoord.textContent = `${row + 1}`;
     grid.appendChild(rowCoord);
 
     for (let col = 0; col < size; col += 1) {
@@ -349,7 +349,9 @@ function battleshipBuildBoard(board, kind) {
       if (data.hit) {
         cell.classList.add("hit-cell", "explosion");
         cell.textContent = "💥";
-      } else if (data.miss) {
+      }
+
+      if (data.miss) {
         cell.classList.add("miss-cell");
         cell.textContent = "🌊";
       }
@@ -393,7 +395,9 @@ function battleshipBuildBoard(board, kind) {
         // Hide ships on the enemy board
         if (data.hit) {
           cell.textContent = "💥";
-        } else if (data.miss) {
+        }
+
+        if (data.miss) {
           cell.textContent = "🌊";
         }
       }
@@ -722,15 +726,18 @@ function battleshipPickRandomUntouchedCell() {
 }
 
 function battleshipChooseAIMove() {
-  if (battleshipState.difficulty === "easy") {
-    return battleshipPickRandomUntouchedCell();
-  }
+  switch (battleshipState.difficulty) {
+    case "easy":
+      return battleshipPickRandomUntouchedCell();
 
-  if (battleshipState.aiTargets.length > 0) {
-    return battleshipState.aiTargets.shift();
-  }
+    default:
+      // Medium and Hard difficulties prioritize queued neighbor targets first.
+      if (battleshipState.aiTargets.length > 0) {
+        return battleshipState.aiTargets.shift();
+      }
 
-  return battleshipPickRandomUntouchedCell();
+      return battleshipPickRandomUntouchedCell();
+  }
 }
 
 // 5. Computer turn
@@ -900,9 +907,20 @@ function battleshipRotateOrientation() {
 function battleshipSavePlayerName() {
   const value = battleshipEls.nicknameInput.value.trim();
 
-  if (!value) {
+  if (value.length < BATTLESHIP_MIN_NICKNAME_LENGTH) {
+    battleshipEls.nicknameInput.classList.add("input-invalid");
+    battleshipEls.nicknameInput.setCustomValidity(
+      `Nickname must be at least ${BATTLESHIP_MIN_NICKNAME_LENGTH} characters.`,
+    );
+    battleshipEls.nicknameInput.reportValidity();
+    battleshipSetMessage(
+      `Nickname must be at least ${BATTLESHIP_MIN_NICKNAME_LENGTH} characters.`,
+    );
     return;
   }
+
+  battleshipEls.nicknameInput.classList.remove("input-invalid");
+  battleshipEls.nicknameInput.setCustomValidity("");
 
   battleshipState.playerName = value;
   localStorage.setItem("battleship_portfolio_player_name", value);
@@ -935,7 +953,6 @@ function battleshipResetState() {
   battleshipState.hoverCells = [];
   battleshipState.lastHoverCell = null;
   battleshipState.aiTargets = [];
-  battleshipState.aiHitsStack = [];
   battleshipState.aiTried = new Set();
 
   battleshipEls.rotateBtn.textContent = "Rotate: Horizontal";
@@ -967,14 +984,17 @@ function battleshipPlaySound(type) {
     });
   };
 
-  if (type === "alliance-hit") {
-    playAudioFile("asset/alliance-explosion.wav");
-    return;
-  }
+  switch (type) {
+    case "alliance-hit":
+      playAudioFile("asset/alliance-explosion.wav");
+      return;
 
-  if (type === "enemy-hit") {
-    playAudioFile("asset/enemy-explosion.wav");
-    return;
+    case "enemy-hit":
+      playAudioFile("asset/enemy-explosion.wav");
+      return;
+
+    default:
+      break;
   }
 
   const AudioContextClass = window.AudioContext || window.webkitAudioContext;
@@ -991,87 +1011,86 @@ function battleshipPlaySound(type) {
 
   const now = context.currentTime;
 
-  if (type === "hit") {
-    oscillator.type = "square";
-    oscillator.frequency.setValueAtTime(220, now);
-    oscillator.frequency.exponentialRampToValueAtTime(70, now + 0.16);
-    gainNode.gain.setValueAtTime(0.0001, now);
-    gainNode.gain.exponentialRampToValueAtTime(0.16, now + 0.01);
-    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
-    oscillator.start(now);
-    oscillator.stop(now + 0.18);
-    return;
-  }
+  switch (type) {
+    case "hit":
+      oscillator.type = "square";
+      oscillator.frequency.setValueAtTime(220, now);
+      oscillator.frequency.exponentialRampToValueAtTime(70, now + 0.16);
+      gainNode.gain.setValueAtTime(0.0001, now);
+      gainNode.gain.exponentialRampToValueAtTime(0.16, now + 0.01);
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+      oscillator.start(now);
+      oscillator.stop(now + 0.18);
+      return;
 
-  if (type === "miss") {
-    oscillator.type = "sine";
-    oscillator.frequency.setValueAtTime(180, now);
-    oscillator.frequency.exponentialRampToValueAtTime(120, now + 0.12);
-    gainNode.gain.setValueAtTime(0.0001, now);
-    gainNode.gain.exponentialRampToValueAtTime(0.08, now + 0.01);
-    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.13);
-    oscillator.start(now);
-    oscillator.stop(now + 0.13);
-    return;
-  }
+    case "miss":
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(180, now);
+      oscillator.frequency.exponentialRampToValueAtTime(120, now + 0.12);
+      gainNode.gain.setValueAtTime(0.0001, now);
+      gainNode.gain.exponentialRampToValueAtTime(0.08, now + 0.01);
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.13);
+      oscillator.start(now);
+      oscillator.stop(now + 0.13);
+      return;
 
-  if (type === "place") {
-    oscillator.type = "triangle";
-    oscillator.frequency.setValueAtTime(330, now);
-    oscillator.frequency.exponentialRampToValueAtTime(440, now + 0.08);
-    gainNode.gain.setValueAtTime(0.0001, now);
-    gainNode.gain.exponentialRampToValueAtTime(0.09, now + 0.01);
-    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.09);
-    oscillator.start(now);
-    oscillator.stop(now + 0.1);
-    return;
-  }
+    case "place":
+      oscillator.type = "triangle";
+      oscillator.frequency.setValueAtTime(330, now);
+      oscillator.frequency.exponentialRampToValueAtTime(440, now + 0.08);
+      gainNode.gain.setValueAtTime(0.0001, now);
+      gainNode.gain.exponentialRampToValueAtTime(0.09, now + 0.01);
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.09);
+      oscillator.start(now);
+      oscillator.stop(now + 0.1);
+      return;
 
-  if (type === "error") {
-    oscillator.type = "sawtooth";
-    oscillator.frequency.setValueAtTime(160, now);
-    gainNode.gain.setValueAtTime(0.0001, now);
-    gainNode.gain.exponentialRampToValueAtTime(0.08, now + 0.01);
-    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.11);
-    oscillator.start(now);
-    oscillator.stop(now + 0.11);
-    return;
-  }
+    case "error":
+      oscillator.type = "sawtooth";
+      oscillator.frequency.setValueAtTime(160, now);
+      gainNode.gain.setValueAtTime(0.0001, now);
+      gainNode.gain.exponentialRampToValueAtTime(0.08, now + 0.01);
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.11);
+      oscillator.start(now);
+      oscillator.stop(now + 0.11);
+      return;
 
-  if (type === "start") {
-    oscillator.type = "triangle";
-    oscillator.frequency.setValueAtTime(330, now);
-    oscillator.frequency.exponentialRampToValueAtTime(520, now + 0.2);
-    gainNode.gain.setValueAtTime(0.0001, now);
-    gainNode.gain.exponentialRampToValueAtTime(0.08, now + 0.02);
-    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
-    oscillator.start(now);
-    oscillator.stop(now + 0.22);
-    return;
-  }
+    case "start":
+      oscillator.type = "triangle";
+      oscillator.frequency.setValueAtTime(330, now);
+      oscillator.frequency.exponentialRampToValueAtTime(520, now + 0.2);
+      gainNode.gain.setValueAtTime(0.0001, now);
+      gainNode.gain.exponentialRampToValueAtTime(0.08, now + 0.02);
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
+      oscillator.start(now);
+      oscillator.stop(now + 0.22);
+      return;
 
-  if (type === "win") {
-    oscillator.type = "triangle";
-    oscillator.frequency.setValueAtTime(392, now);
-    oscillator.frequency.setValueAtTime(523, now + 0.14);
-    oscillator.frequency.setValueAtTime(659, now + 0.28);
-    gainNode.gain.setValueAtTime(0.0001, now);
-    gainNode.gain.exponentialRampToValueAtTime(0.08, now + 0.02);
-    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.45);
-    oscillator.start(now);
-    oscillator.stop(now + 0.46);
-    return;
-  }
+    case "win":
+      oscillator.type = "triangle";
+      oscillator.frequency.setValueAtTime(392, now);
+      oscillator.frequency.setValueAtTime(523, now + 0.14);
+      oscillator.frequency.setValueAtTime(659, now + 0.28);
+      gainNode.gain.setValueAtTime(0.0001, now);
+      gainNode.gain.exponentialRampToValueAtTime(0.08, now + 0.02);
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.45);
+      oscillator.start(now);
+      oscillator.stop(now + 0.46);
+      return;
 
-  if (type === "lose") {
-    oscillator.type = "sawtooth";
-    oscillator.frequency.setValueAtTime(220, now);
-    oscillator.frequency.exponentialRampToValueAtTime(110, now + 0.4);
-    gainNode.gain.setValueAtTime(0.0001, now);
-    gainNode.gain.exponentialRampToValueAtTime(0.08, now + 0.02);
-    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.42);
-    oscillator.start(now);
-    oscillator.stop(now + 0.42);
+    case "lose":
+      oscillator.type = "sawtooth";
+      oscillator.frequency.setValueAtTime(220, now);
+      oscillator.frequency.exponentialRampToValueAtTime(110, now + 0.4);
+      gainNode.gain.setValueAtTime(0.0001, now);
+      gainNode.gain.exponentialRampToValueAtTime(0.08, now + 0.02);
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.42);
+      oscillator.start(now);
+      oscillator.stop(now + 0.42);
+      return;
+
+    default:
+      return;
   }
 }
 
@@ -1079,6 +1098,15 @@ function battleshipPlaySound(type) {
 // The restart button resets the game while the leaderboard continues reading from localStorage
 function battleshipBindEvents() {
   battleshipEls.saveNameBtn.addEventListener("click", battleshipSavePlayerName);
+  battleshipEls.nicknameInput.addEventListener("input", () => {
+    if (
+      battleshipEls.nicknameInput.value.trim().length >=
+      BATTLESHIP_MIN_NICKNAME_LENGTH
+    ) {
+      battleshipEls.nicknameInput.classList.remove("input-invalid");
+      battleshipEls.nicknameInput.setCustomValidity("");
+    }
+  });
   battleshipEls.rotateBtn.addEventListener(
     "click",
     battleshipRotateOrientation,

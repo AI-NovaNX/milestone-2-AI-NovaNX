@@ -141,13 +141,23 @@ label {
 input {
   font-family: "Nunito", sans-serif;
   width: 100%;
-  border: none;
+  border: 2px solid transparent;
   outline: none;
   border-radius: 10px;
   min-height: var(--input-height);
   padding: 9px 12px;
   font-size: 0.88rem;
   margin-bottom: 0;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+
+input.input-invalid {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+  background: #fff5f5;
 }
 
 .button-group {
