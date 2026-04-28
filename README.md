@@ -83,7 +83,7 @@ The main goal of this project is to showcase a fictional gaming company called *
 
 ### Demo Links
 
-- Live deploy: [https://revou-fsse-feb26.github.io/milestone-2-AI-NovaNX/](https://ai-novanx.online/src/indeks.html)
+- Live deploy: https://ai-novanx.online/src/indeks.html
 - Website entry point: [index.html](index.html)
 - Main landing page source: [src/indeks.html](src/indeks.html)
 - About page: [src/about-us.html](src/about-us.html)
