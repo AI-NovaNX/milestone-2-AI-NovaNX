@@ -83,7 +83,7 @@ The main goal of this project is to showcase a fictional gaming company called *
 
 ### Demo Links
 
-- Live deploy: https://ai-novanx.online/src/indeks.html
+- Live deploy: [https://ai-novanx.online/src/indeks.html](https://ai-novanx.online/src/indeks.html)
 - Website entry point: [index.html](index.html)
 - Main landing page source: [src/indeks.html](src/indeks.html)
 - About page: [src/about-us.html](src/about-us.html)
@@ -94,13 +94,14 @@ The main goal of this project is to showcase a fictional gaming company called *
 
 ### Optional Live Demo
 
-If GitHub Pages is enabled for this repository, the project can be published from the root entry page:
+The project is currently deployed and can be accessed through the following live URL:
 
-- [https://revou-fsse-feb26.github.io/milestone-2-AI-NovaNX/](https://revou-fsse-feb26.github.io/milestone-2-AI-NovaNX/)
+- [https://ai-novanx.online/src/indeks.html](https://ai-novanx.online/src/indeks.html)
 
 ## How to Run the Project
 
-1. Clone this repository.
+1. Clone this repository : [https://github.com/Revou-FSSE-Feb26/milestone-2-AI-NovaNX](https://github.com/Revou-FSSE-Feb26/milestone-2-AI-NovaNX)
+
 2. Install dependencies:
 
 ```bash
