@@ -34,9 +34,7 @@ body {
   color: var(--text-main);
   overflow-x: hidden;
   overflow-y: auto;
-  background:
-    linear-gradient(rgba(15, 23, 42, 0.76), rgba(2, 6, 23, 0.84)),
-    url("memoryCard.png") center / cover no-repeat fixed;
+  background: url("memoryCard.webp") center / cover no-repeat fixed;
 }
 
 .page-wrapper {
@@ -246,6 +244,17 @@ button:hover,
 .stats-panel {
   margin-top: 0;
   flex: 0 0 auto;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.stats-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.48);
+  z-index: -1;
 }
 
 .stats-panel p:last-child {
@@ -256,6 +265,12 @@ button:hover,
   font-family: "Fredoka", sans-serif;
   font-weight: 600;
   color: var(--text-main);
+}
+
+#moves,
+#matches,
+#timer {
+  font-weight: 400;
 }
 
 .status-message {

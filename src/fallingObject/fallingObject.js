@@ -44,6 +44,9 @@ const fallingEmojis = [
   "💎",
   "🪐",
 ];
+const backgroundMusic = new Audio("avoidFallingObject.mp3");
+backgroundMusic.loop = true;
+backgroundMusic.volume = 0.3;
 
 // Set score = 0
 // Set gameOver = false
@@ -106,6 +109,16 @@ function stopGameLoops() {
   clearInterval(gameLoop);
   clearInterval(spawnLoop);
   clearInterval(durationLoop);
+}
+
+function playBackgroundMusic() {
+  backgroundMusic.currentTime = 0;
+  backgroundMusic.play().catch(() => {});
+}
+
+function stopBackgroundMusic() {
+  backgroundMusic.pause();
+  backgroundMusic.currentTime = 0;
 }
 
 function getSpawnInterval() {
@@ -319,6 +332,7 @@ function createFallingObject() {
 
   object.style.left = `${randomX}px`;
   object.style.top = `0px`;
+  object.style.transform = "translate3d(0, 0, 0)";
 
   gameArea.appendChild(object);
 
@@ -377,7 +391,7 @@ function updateObjects() {
     const obj = fallingObjects[i];
     // turunkan posisi objek
     obj.y += obj.speed;
-    obj.element.style.top = `${obj.y}px`;
+    obj.element.style.transform = `translate3d(0, ${obj.y}px, 0)`;
 
     const objCircle = {
       x: obj.x + obj.width / 2,
@@ -455,6 +469,7 @@ function endGame(isChampion = false) {
   updateStartButtonState();
 
   stopGameLoops();
+  stopBackgroundMusic();
   clearTimeout(playerBonusTimeout);
   if (isChampion) {
     resetPlayerToDefaultEmoji();
@@ -509,6 +524,7 @@ function startGame() {
   gameStartTime = Date.now();
   updateDurationDisplay(0);
   updateStartButtonState();
+  playBackgroundMusic();
 
   gameLoop = setInterval(() => {
     updateObjects();
@@ -578,11 +594,13 @@ startBtn.addEventListener("click", () => {
   //     (run startGame to reset state and start the loops)
   if (gameRunning) return;
   stopGameLoops();
+  stopBackgroundMusic();
   startGame();
 });
 
 restartBtn.addEventListener("click", () => {
   stopGameLoops();
+  stopBackgroundMusic();
   startGame();
 });
 

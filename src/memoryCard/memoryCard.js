@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const finalMessage = document.getElementById("finalMessage");
   const playAgainBtn = document.getElementById("playAgainBtn");
   const MIN_NICKNAME_LENGTH = 3;
+  const backgroundMusic = new Audio("memoryCard.mp3");
+  backgroundMusic.loop = true;
+  backgroundMusic.volume = 0.3;
 
   // START
   // Prepare pairs of card symbols
@@ -147,6 +150,16 @@ document.addEventListener("DOMContentLoaded", () => {
     timerInterval = null;
   }
 
+  function playBackgroundMusic() {
+    backgroundMusic.currentTime = 0;
+    backgroundMusic.play().catch(() => {});
+  }
+
+  function stopBackgroundMusic() {
+    backgroundMusic.pause();
+    backgroundMusic.currentTime = 0;
+  }
+
   function handleCardClick(event) {
     // When a card is clicked:
     //     If the game is not active, ignore it
@@ -223,6 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //     show the win message
     if (matchedPairs === cardSymbols.length) {
       stopTimer();
+      stopBackgroundMusic();
       messageText.textContent = `Congratulations, ${playerName}! You completed the game in ${moves} moves.`;
       finalMessage.textContent = `${playerName} completed all pairs in ${moves} moves and ${formatTime(secondsElapsed)}.`;
       resultOverlay.classList.remove("hidden");
@@ -288,6 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderBoard();
     updateStats();
     updateTimer();
+    playBackgroundMusic();
     startTimer();
   }
 

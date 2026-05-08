@@ -26,6 +26,17 @@ const BATTLESHIP_SCORE_PER_HIT = Object.freeze({
 const BATTLESHIP_SUNK_BONUS = 50;
 const BATTLESHIP_MIN_NICKNAME_LENGTH = 3;
 
+const BATTLESHIP_BACKGROUND_TRACKS = Object.freeze({
+  placement: {
+    src: "asset/placement.mp3",
+    volume: 0.28,
+  },
+  battle: {
+    src: "asset/battle.mp3",
+    volume: 0.24,
+  },
+});
+
 const battleshipState = {
   playerName: "Guest",
   difficulty: "easy",
@@ -43,6 +54,22 @@ const battleshipState = {
   // Queue of nearby cells to target after a successful hit.
   aiTargets: [],
   aiTried: new Set(),
+};
+
+const battleshipBackgroundMusic = {
+  desiredPhase: null,
+  currentPhase: null,
+  unlocked: false,
+  tracks: Object.fromEntries(
+    Object.entries(BATTLESHIP_BACKGROUND_TRACKS).map(([phase, config]) => {
+      const audio = new Audio(config.src);
+      audio.loop = true;
+      audio.preload = "auto";
+      audio.volume = config.volume;
+
+      return [phase, audio];
+    }),
+  ),
 };
 
 const battleshipEls = {
@@ -239,6 +266,63 @@ function battleshipUpdateTopInfo() {
 
 function battleshipSetMessage(text) {
   battleshipEls.messageLabel.textContent = text;
+}
+
+function battleshipStopBackgroundMusic() {
+  Object.values(battleshipBackgroundMusic.tracks).forEach((audio) => {
+    audio.pause();
+    audio.currentTime = 0;
+  });
+
+  battleshipBackgroundMusic.currentPhase = null;
+}
+
+function battleshipPlayBackgroundMusic(phase) {
+  battleshipBackgroundMusic.desiredPhase = phase;
+
+  if (!battleshipBackgroundMusic.unlocked) {
+    return;
+  }
+
+  const targetAudio = battleshipBackgroundMusic.tracks[phase];
+
+  if (!targetAudio) {
+    battleshipStopBackgroundMusic();
+    return;
+  }
+
+  if (battleshipBackgroundMusic.currentPhase === phase && !targetAudio.paused) {
+    return;
+  }
+
+  Object.entries(battleshipBackgroundMusic.tracks).forEach(
+    ([trackPhase, audio]) => {
+      if (trackPhase !== phase) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    },
+  );
+
+  targetAudio
+    .play()
+    .then(() => {
+      battleshipBackgroundMusic.currentPhase = phase;
+    })
+    .catch(() => {
+      battleshipBackgroundMusic.currentPhase = null;
+    });
+}
+
+function battleshipUnlockBackgroundMusic() {
+  if (battleshipBackgroundMusic.unlocked) {
+    return;
+  }
+
+  battleshipBackgroundMusic.unlocked = true;
+  battleshipPlayBackgroundMusic(
+    battleshipBackgroundMusic.desiredPhase || battleshipState.phase,
+  );
 }
 
 function battleshipRenderShipQueue() {
@@ -553,6 +637,7 @@ function battleshipStartBattle() {
   battleshipState.phase = "battle";
   battleshipState.hoverCells = [];
   battleshipSetMessage("Battle started. Attack the enemy board.");
+  battleshipPlayBackgroundMusic("battle");
   battleshipPlaySound("start");
   battleshipRenderAll();
 }
@@ -862,6 +947,7 @@ function battleshipHideModal() {
 // If all player ships sink, the computer wins
 function battleshipFinishGame(playerWon) {
   battleshipState.phase = "gameover";
+  battleshipPlayBackgroundMusic("gameover");
 
   if (playerWon) {
     battleshipPlaySound("win");
@@ -970,6 +1056,7 @@ function battleshipResetState() {
 
   battleshipPlaceEnemyShipsRandom();
   battleshipSetMessage("Place your ships on the left board.");
+  battleshipPlayBackgroundMusic("placement");
   battleshipHideModal();
   battleshipRenderAll();
 }
@@ -1097,6 +1184,12 @@ function battleshipPlaySound(type) {
 // 7. Restart and leaderboard
 // The restart button resets the game while the leaderboard continues reading from localStorage
 function battleshipBindEvents() {
+  document.addEventListener("pointerdown", battleshipUnlockBackgroundMusic, {
+    once: true,
+  });
+  document.addEventListener("keydown", battleshipUnlockBackgroundMusic, {
+    once: true,
+  });
   battleshipEls.saveNameBtn.addEventListener("click", battleshipSavePlayerName);
   battleshipEls.nicknameInput.addEventListener("input", () => {
     if (

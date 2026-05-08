@@ -26,9 +26,7 @@
 
 body {
   font-family: "Poppins", "Inter", "Trebuchet MS", sans-serif;
-  background:
-    linear-gradient(rgba(15, 23, 42, 0.74), rgba(17, 24, 39, 0.82)),
-    url("falling.png") center / cover no-repeat fixed;
+  background: #38bdf8 url("falling.webp") center / cover no-repeat fixed;
   color: #ffffff;
   min-height: 100vh;
   overflow-x: hidden;
@@ -80,6 +78,26 @@ body {
   border-radius: var(--card-radius);
   padding: var(--card-padding);
   backdrop-filter: blur(8px);
+}
+
+.left-panel .card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.left-panel .card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(15, 23, 42, 0.46);
+  pointer-events: none;
+}
+
+.left-panel .card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .card h2 {
@@ -185,8 +203,10 @@ body {
   max-width: 700px;
   height: clamp(420px, 60vh, 560px);
   min-height: var(--game-height);
-  background: linear-gradient(180deg, #1e293b, #0f172a);
-  border: 3px solid rgba(255, 255, 255, 0.15);
+  background:
+    linear-gradient(rgba(15, 23, 42, 0.23), rgba(15, 23, 42, 0.43)),
+    rgba(14, 165, 233, 0.12);
+  border: 3px solid rgba(255, 255, 255, 0.34);
   border-radius: clamp(16px, 2.2vh, 20px);
   position: relative;
   overflow: hidden;
@@ -299,6 +319,7 @@ body {
   top: 0;
   user-select: none;
   filter: drop-shadow(0 6px 10px rgba(15, 23, 42, 0.35));
+  will-change: transform;
 }
 
 .score-popup {
