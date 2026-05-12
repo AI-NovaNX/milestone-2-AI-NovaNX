@@ -98,12 +98,19 @@ document.addEventListener("DOMContentLoaded", () => {
         cardElement.classList.add("matched");
       }
 
-      cardElement.innerHTML = `
-        <div class="memory-card-inner">
-          <div class="memory-card-face memory-card-front">?</div>
-          <div class="memory-card-face memory-card-back">${card.symbol}</div>
-        </div>
-      `;
+      const cardInner = document.createElement("div");
+      cardInner.classList.add("memory-card-inner");
+
+      const cardFront = document.createElement("div");
+      cardFront.classList.add("memory-card-face", "memory-card-front");
+      cardFront.textContent = "?";
+
+      const cardBack = document.createElement("div");
+      cardBack.classList.add("memory-card-face", "memory-card-back");
+      cardBack.textContent = card.symbol;
+
+      cardInner.append(cardFront, cardBack);
+      cardElement.appendChild(cardInner);
 
       cardElement.addEventListener("click", handleCardClick);
       gameBoard.appendChild(cardElement);
@@ -334,7 +341,9 @@ document.addEventListener("DOMContentLoaded", () => {
     leaderboardList.innerHTML = "";
 
     if (leaderboard.length === 0) {
-      leaderboardList.innerHTML = "<li>No saved scores yet.</li>";
+      const emptyEntry = document.createElement("li");
+      emptyEntry.textContent = "No saved scores yet.";
+      leaderboardList.appendChild(emptyEntry);
       return;
     }
 
