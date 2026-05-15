@@ -46,18 +46,18 @@
         </div>
 
         <div class="control-group buttons-line">
-          <button id="battleshipStartBtn" disabled>Start Battle</button>
           <button id="battleshipRestartBtn">Restart Game</button>
-          <a href="../indeks.html" class="battleship-home-link"
-            >Back to Home</a
-          >
+          <a href="../indeks.html" class="battleship-home-link">Back to Home</a>
         </div>
       </section>
 
       <section class="game-instructions glass">
         <h2>Game Instructions</h2>
         <ul>
-          <li>This game requires at least a tablet-sized screen. It is not recommended for use on a phone-sized screen.</li>
+          <li>
+            This game requires at least a tablet-sized screen. It is not
+            recommended for use on a phone-sized screen.
+          </li>
           <li>First, place all your ships on your board.</li>
           <li>Hover over your board to preview ship placement.</li>
           <li>Green preview means valid. Red preview means invalid.</li>
@@ -82,34 +82,37 @@
         <button id="battleshipRotateBtn">Rotate: Horizontal</button>
       </section>
 
-      <section class="boards-area">
-        <div class="board-card glass">
-          <h2>Your Board</h2>
-          <div id="battleshipPlayerBoardWrapper"></div>
-        </div>
-
-        <div class="board-card glass">
-          <h2>Enemy Board</h2>
-          <div id="battleshipEnemyBoardWrapper"></div>
-        </div>
-      </section>
-
-      <section class="legend-leaderboard">
-        <div class="legend glass">
-          <h2>Legend</h2>
-          <div class="legend-items">
-            <span>💥 Hit</span>
-            <span>🌊 Miss</span>
-            <span class="preview-ok-badge">Valid Preview</span>
-            <span class="preview-bad-badge">Invalid Preview</span>
+      <div class="battle-layout">
+        <section class="boards-area">
+          <div class="board-card glass">
+            <h2>Your Board</h2>
+            <div id="battleshipPlayerBoardWrapper"></div>
           </div>
-        </div>
 
-        <div class="leaderboard glass">
-          <h2>Leaderboard</h2>
-          <ol id="battleshipLeaderboardList"></ol>
-        </div>
-      </section>
+          <div class="board-card glass">
+            <h2>Enemy Board</h2>
+            <div id="battleshipEnemyBoardWrapper"></div>
+          </div>
+        </section>
+
+        <section class="legend-leaderboard">
+          <div class="legend glass">
+            <h2>Legend</h2>
+            <div class="legend-items">
+              <span>💥 Hit</span>
+              <span>🌊 Miss</span>
+              <span class="preview-ok-badge">Valid Preview</span>
+              <span class="preview-bad-badge">Invalid Preview</span>
+              <button id="battleshipStartBtn" disabled>Start Battle</button>
+            </div>
+          </div>
+
+          <div class="leaderboard glass">
+            <h2>Leaderboard</h2>
+            <ol id="battleshipLeaderboardList"></ol>
+          </div>
+        </section>
+      </div>
     </div>
 
     <div id="battleshipModal" class="modal hidden">

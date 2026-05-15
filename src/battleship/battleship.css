@@ -260,6 +260,10 @@ button:disabled {
   text-decoration: line-through;
 }
 
+.battle-layout {
+  display: contents;
+}
+
 .boards-area {
   display: grid;
   grid-template-columns: repeat(2, minmax(320px, 1fr));
@@ -417,6 +421,7 @@ button:disabled {
   font-family: var(--font-support);
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 12px;
   color: var(--muted);
 }
@@ -442,6 +447,25 @@ button:disabled {
   margin-left: 20px;
   line-height: 1.8;
   color: var(--muted);
+}
+
+@media (min-width: 1101px) {
+  .battle-layout {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+
+  .boards-area,
+  .legend-leaderboard {
+    display: contents;
+  }
+
+  .legend,
+  .leaderboard {
+    margin-bottom: 0;
+  }
 }
 
 .modal {
